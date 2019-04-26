@@ -1,0 +1,18 @@
+---
+- hosts: server # selector for which hosts in inventory to run this playbook against
+  become: true # use sudo command when executing all tasks, note that this can also be placed on task level
+  tasks: # list of tasks to execute in this play
+    - name: Add MongoDB Repo
+      yum_repository:
+        name: mongodb-org
+        description: MongoDB Repository
+        # file: defaults to name.repo
+        baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+        gpgcheck: yes
+        gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
+        # enabled: default is yes
+
+    - name: install packages
+      yum: name={{item}} state=present update_cache=yes
+      with_items:
+        - vim

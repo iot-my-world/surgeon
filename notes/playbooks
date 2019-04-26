@@ -6,3 +6,13 @@ each play in the list starts with a '-'
 [1] hosts: # selector for which hosts against which to run the play
 [2] tasks: # list of tasks to execute
  Notes: indentation matters inside the playbook
+
+ the 4 pillars:
+ 1. the packages that you require
+ 2. the service handlers i.e. systemd etc.
+ 3. the overall sys config. files, users etc, firewall or ip table rules
+ 4. config files for the app itself
+
+ 1. package management
+ state= present # if it is there already, do nothing
+      = latest # update/install
