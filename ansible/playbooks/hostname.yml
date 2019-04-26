@@ -1,0 +1,4 @@
+---
+- hosts: server # selector for which hosts in inventory to run this playbook against
+  tasks: # list of tasks to execute in this play
+    - command: hostname

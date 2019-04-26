@@ -1,0 +1,11 @@
+# generally
+# ansible -m 'module' 'selector'
+
+# ping
+ansible -m ping all     # all in inventory
+ansible -m ping server  # all in server group
+
+# general command module to just run stuff on server
+ansible -m command -a "any bash stuff here" all
+# equivalent to just leaving out command, as command is the default module
+ansible -a "any bash stuff here" all

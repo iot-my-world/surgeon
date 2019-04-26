@@ -1,0 +1,8 @@
+every playbook is written in .yml
+they start with --- on top line
+they have a list of plays
+each play in the list starts with a '-'
+2 keys inside each play
+[1] hosts: # selector for which hosts against which to run the play
+[2] tasks: # list of tasks to execute
+ Notes: indentation matters inside the playbook
