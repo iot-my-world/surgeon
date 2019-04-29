@@ -1,6 +1,21 @@
 ---
 # packages
+additionalYumRepos:
+  - name: epel-release-latest-7
+    description: MongoDB Repository
+    baseurl: https://dl.fedoraproject.org/pub/epel/7Server/aarch64/
+    gpgcheck: yes
+    gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+
+  - name: mongodb-org
+    description: MongoDB Repository
+    baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+    gpgcheck: yes
+    gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
+
 additionalYumPackages:
+  - mongodb-org
+  - python-pip
 
 # users
 additionalHumanUsers:

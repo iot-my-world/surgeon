@@ -4,6 +4,7 @@ ansible_user_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFeV5DbuRfHKqK/au
 brainMongoUserPassword: theInsideOfTheBrainContainsNeurons
 
 # packages
+yumRepos:
 yumPackages:
   - vim
 
