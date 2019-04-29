@@ -2,6 +2,16 @@
 - hosts: server # selector for which hosts in inventory to run this playbook against
   become: true # use sudo command when executing all tasks, note that this can also be placed on task level
   tasks: # list of tasks to execute in this play
+    - name: Add EPEL Repo
+      yum_repository:
+        name: epel-release-latest-7
+        description: MongoDB Repository
+        # file: defaults to name.repo
+        baseurl: https://dl.fedoraproject.org/pub/epel/7Server/aarch64/
+        gpgcheck: yes
+        gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+        # enabled: default is yes
+
     - name: Add MongoDB Repo
       yum_repository:
         name: mongodb-org
@@ -12,7 +22,28 @@
         gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
         # enabled: default is yes
 
-    - name: install packages
-      yum: name={{item}} state=present update_cache=yes
-      with_items:
-        - vim
+    - name: install required packages
+      yum:
+        name:
+          - vim
+          - mongodb-org
+          - python-pip
+        state: present
+        update_cache: yes
+
+    - name: install required python packages
+      pip:
+        name: pymongo
+
+    - name: ensure mongo started and enabled
+      service: name=mongod state=started enabled=yes
+
+    - name: set up brain user on mongo db
+      mongodb_user:
+        database: admin
+        name: brain
+        password: theInsideOfTheBrainContainsNeurons
+        roles:
+          - '{ role: "userAdminAnyDatabase", db: "admin" }'
+          - "readWriteAnyDatabase"
+        state: present
