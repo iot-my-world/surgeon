@@ -1,12 +1,10 @@
 ---
 - name: Create sudo group
-  become: true
   group:
     name: sudo
     state: present
 
 - name: Remove password requirement for sudo users
-  become: true
   lineinfile:
     path: /etc/sudoers
     state: present
@@ -15,23 +13,21 @@
     line: "%sudo ALL=NOPASSWD: ALL"
 
 - name: Create "{{ ansible_user }}" user group
-  become: true
   group:
     name: "{{ ansible_user }}"
     state: present
 
 - name: Create "{{ ansible_user }}" user
-  become: true
   user:
     name: "{{ ansible_user }}"
     # password: # using pgp key login
     groups:
       - wheel
+      - sudo
       - "{{ ansible_user }}"
     append: yes
 
 - name: Set authorized key for "{{ ansible_user }}"
-  become: true
   authorized_key:
     user: "{{ ansible_user }}"
     key: "{{ ansible_user_public_key }}"
@@ -43,7 +39,7 @@
     regexp: "^PasswordAuthentication"
     line: "PasswordAuthentication no"
     state: present
-  notify: Restart ssh
+  notify: Reload ssh
 
 - name: Disallow root SSH access
   lineinfile:
@@ -51,4 +47,4 @@
     regexp: "^PermitRootLogin"
     line: "PermitRootLogin no"
     state: present
-  notify: Restart ssh
+  notify: Reload ssh
