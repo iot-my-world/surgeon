@@ -1,0 +1,37 @@
+---
+- name: Disallow password authentication
+  become: true
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  notify: Reload ssh
+
+- name: Disallow root SSH access
+  become: true
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+  notify: Reload ssh
+
+- name: Install Firewall
+  become: true
+  yum:
+    name:
+      - firewalld
+    state: present
+
+- name: Start and Enable Firewall
+  become: true
+  service: name=firewalld state=started enabled=yes
+
+- name: Allow ssh through Firewall
+  become: true
+  firewalld:
+    service: ssh
+    immediate: yes
+    permanent: yes
+    state: enabled

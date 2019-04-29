@@ -1,0 +1,8 @@
+---
+- name: Restart ssh
+  become: true
+  service: name=sshd state=restarted
+
+- name: Reload ssh
+  become: true
+  service: name=sshd state=reloaded

@@ -1,6 +1,2 @@
 ---
-- name: Restart ssh
-  service: name=sshd state=restarted
-
-- name: Reload ssh
-  service: name=sshd state=reloaded
+# handlers file for initialAnsibleSetup

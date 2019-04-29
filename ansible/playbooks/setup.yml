@@ -1,5 +1,4 @@
 ---
-- hosts: brain
-  tasks:
-    - name: test
-      command: echo "hello world"
+- hosts: brain, nerve, kafka
+  roles:
+    - hardenSecurity
