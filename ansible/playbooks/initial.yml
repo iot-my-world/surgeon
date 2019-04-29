@@ -1,0 +1,7 @@
+---
+- hosts: brain, nerve, kafka
+  vars:
+    ansible_ssh_user: root
+  roles:
+    - updateSystem
+    - initialAnsibleSetup

@@ -1,0 +1,29 @@
+---
+- name: Create sudo group
+  become: true
+  group:
+    name: sudo
+    state: present
+
+- name: Create "{{ ansible_user }}" user group
+  become: true
+  group:
+    name: "{{ ansible_user }}"
+    state: present
+
+- name: Create "{{ ansible_user }}" user
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    # password: # using pgp key login
+    groups:
+      - wheel
+      - "{{ ansible_user }}"
+    append: yes
+
+- name: Set authorized key for "{{ ansible_user }}"
+  become: true
+  authorized_key:
+    user: "{{ ansible_user }}"
+    key: "{{ ansible_user_public_key }}"
+    state: present
