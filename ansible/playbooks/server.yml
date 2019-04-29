@@ -1,5 +1,7 @@
 ---
 - hosts: server # selector for which hosts in inventory to run this playbook against
+  vars:
+    createMongoUser: false
   become: true # use sudo command when executing all tasks, note that this can also be placed on task level
   tasks: # list of tasks to execute in this play
     - name: Add EPEL Repo
@@ -39,6 +41,7 @@
       service: name=mongod state=started enabled=yes
 
     - name: set up brain user on mongo db
+      when: createMongoUser
       mongodb_user:
         database: admin
         name: brain
