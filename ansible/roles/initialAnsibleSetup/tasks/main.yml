@@ -5,6 +5,15 @@
     name: sudo
     state: present
 
+- name: Remove password requirement for sudo users
+  become: true
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: "^%sudo.*ALL=NOPASSWD:.*ALL"
+    insertafter: "^%sudo.*ALL=(ALL:ALL).*ALL"
+    line: "%sudo ALL=NOPASSWD: ALL"
+
 - name: Create "{{ ansible_user }}" user group
   become: true
   group:
@@ -27,3 +36,19 @@
     user: "{{ ansible_user }}"
     key: "{{ ansible_user_public_key }}"
     state: present
+
+- name: Disallow password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  notify: Restart ssh
+
+- name: Disallow root SSH access
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+  notify: Restart ssh
