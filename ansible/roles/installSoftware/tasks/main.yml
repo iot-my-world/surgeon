@@ -1,2 +1,24 @@
 ---
-# tasks file for installSoftware
+- name: Add repos
+  yum_repository:
+    name: "{{ item['name'] }}"
+    description: "{{ item['description'] }}"
+    # file: defaults to name.repo
+    baseurl: "{{ item['baseurl'] }}"
+    gpgcheck: "{{ item['gpgcheck'] }}"
+    gpgkey: "{{ item['gpgkey'] }}"
+    # enabled: default is yes
+  with_items:
+    - "{{ yumRepos }}"
+
+- name: Add additional repos
+  yum_repository:
+    name: "{{ item['name'] }}"
+    description: "{{ item['description'] }}"
+    # file: defaults to name.repo
+    baseurl: "{{ item['baseurl'] }}"
+    gpgcheck: "{{ item['gpgcheck'] }}"
+    gpgkey: "{{ item['gpgkey'] }}"
+    # enabled: default is yes
+  with_items:
+    - "{{ additionalYumRepos }}"
