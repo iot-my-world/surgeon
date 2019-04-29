@@ -43,7 +43,21 @@
         database: admin
         name: brain
         password: theInsideOfTheBrainContainsNeurons
+        update_password: always
         roles:
-          - '{ role: "userAdminAnyDatabase", db: "admin" }'
+          - "userAdminAnyDatabase"
           - "readWriteAnyDatabase"
         state: present
+
+    - name: enable authentication on mongodb
+      blockinfile:
+        path: /etc/mongod.conf
+        insertafter: "^#security:"
+        block: |
+          security:
+            authorization: "enabled"
+      notify: restart mongodb
+
+  handlers:
+    - name: restart mongodb
+      service: name=mongod state=restarted
