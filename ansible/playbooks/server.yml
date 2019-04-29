@@ -45,7 +45,7 @@
       mongodb_user:
         database: admin
         name: brain
-        password: theInsideOfTheBrainContainsNeurons
+        password: "{{ brainMongoUserPassword }}"
         update_password: always
         roles:
           - "userAdminAnyDatabase"
