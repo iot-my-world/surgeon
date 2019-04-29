@@ -1,2 +1,8 @@
-[server]
-nerve.spotnav.co.za
+[brain]
+brain.spotnav.net
+
+[nerve]
+nerve.spotnav.net
+
+[kafka]
+kafka.spotnav.net

@@ -10,4 +10,4 @@ ansible -m command -a "any bash stuff here" all
 # equivalent to just leaving out command, as command is the default module
 ansible -a "any bash stuff here" all
 
-# ansible-playbook playbooks/server.yml --ask-become-pass
+# ansible-playbook playbooks/setup.yml -c ansible_setup.cfg

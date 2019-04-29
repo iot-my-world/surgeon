@@ -1,0 +1,7 @@
+---
+- hosts: brain
+  vars:
+    ansible_ssh_user: root
+  tasks:
+    - name: test
+      command: echo "hello world"
