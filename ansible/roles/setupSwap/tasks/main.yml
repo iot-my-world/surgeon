@@ -1,0 +1,16 @@
+---
+- name: Check if swap is already enabled
+  become: true
+  command: swapon -s
+  register: swap_status
+
+- debug:
+    var: swap_status
+    verbosity: 0
+
+- block:
+    - name: Setup Swap
+      become: true
+      command: echo "need to set up swap"
+
+  when: swap_status.stdout == ""
