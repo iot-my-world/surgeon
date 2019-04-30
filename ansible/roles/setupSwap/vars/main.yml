@@ -1,7 +1,2 @@
 ---
-if: /dev/zero
-of: /swapfile
-count: 2048
-bs: 1MiB
-swappiness: 10
-vfs_cache_pressure: 50
+# vars file for setupSwap
