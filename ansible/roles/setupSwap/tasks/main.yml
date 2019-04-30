@@ -12,8 +12,9 @@
 
     - name: Make swap only root readable
       become: true
-      command: chmod 600 "{{ of }}"
-      notify: reboot
+      file:
+        path: "{{ of }}"
+        mode: 0600
 
     - name: Format file as swap
       become: true
@@ -30,7 +31,7 @@
       lineinfile:
         path: /etc/fstab
         regexp: "swapfile"
-        line: '"{{ of }}" none swap sw 0 0'
+        line: "{{ of }} none swap sw 0 0"
         state: present
       notify: reboot
 
