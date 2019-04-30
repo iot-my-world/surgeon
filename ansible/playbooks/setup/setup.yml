@@ -1,7 +1,8 @@
 ---
 - hosts: brain, nerve, kafka
+  gather_facts: false
   roles:
-    - setLocale
-    - hardenSecurity
-    - setupSwap
+    # - setLocale
+    # - hardenSecurity
+    # - setupSwap
     - installSoftware

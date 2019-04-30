@@ -1,7 +1,2 @@
 ---
-yumRepos: []
-additionalYumRepos: []
-yumPackages: []
-additionalYumPackages: []
-
-pythonPackages: []
+# vars file for installSoftware
