@@ -11,3 +11,8 @@ ansible -m command -a "any bash stuff here" all
 ansible -a "any bash stuff here" all
 
 # ansible-playbook playbooks/setup.yml -c ansible_setup.cfg
+
+# to see the results of the gathering facts setup
+ansible -m setup 'hosts selector'
+# e.g.
+ansible -m setup brain
