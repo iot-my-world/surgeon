@@ -2,7 +2,9 @@
 # packages
 additionalYumRepos:
   - name: epel-release-latest-7
-    description: MongoDB Repository
+    # name becomes 'repo id' in repolist
+    description: epel release repository
+    # description becomes 'repo name' in repolist
     baseurl: https://dl.fedoraproject.org/pub/epel/7Server/aarch64/
     gpgcheck: yes
     gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
