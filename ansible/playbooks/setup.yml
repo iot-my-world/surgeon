@@ -1,5 +1,6 @@
 ---
 - hosts: brain, nerve, kafka
   roles:
-    #    - hardenSecurity
+    - hardenSecurity
     - installSoftware
+    - timeSynchronisation

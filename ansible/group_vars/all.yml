@@ -3,9 +3,11 @@ ansible_user: surgeon
 ansible_user_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFeV5DbuRfHKqK/au9Yqe+iAImzAm3+8vB6d9DVB8JwqOXlGellWooPxg2OggxvaX43DDrC7b+RfJebHwCaYBogRXgvi8jWQZmBD6nBYMYj3cbQsOoohthBkhPmSizeUQV4FkzB36mqfTg4KZ0HdUisv0zp0i9aBGSvWFn0wDTrPKy+9LpSKUbktFByxGJF2ryG6gtzgriM6dQZtAXhxcdRy8mQKkSmJRZItFL5G/UbUVbLWFeOzz8F789fZGSWfb6c6sqxQSA+MWNx6NHee6rOWTi2pOK9zWtWYbRdo/dI+S8CTE3DQBZQuTB5i1TfCztQ78N+z1eQ1cA02zP8dnP bernardbussy@FVFVXUF5J1WK-MacAir.local
 brainMongoUserPassword: theInsideOfTheBrainContainsNeurons
 
+timeZone: Africa/Johannesburg
+
 # packages
 yumRepos: []
-yumPackages: [vim]
+yumPackages: [vim, ntp]
 
 # Users
 systemUsers: []

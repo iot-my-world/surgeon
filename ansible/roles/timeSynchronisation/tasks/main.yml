@@ -1,0 +1,17 @@
+---
+- name: set timezone to Asia/Tokyo
+  become: true
+  timezone:
+    name: "{{ timeZone }}"
+
+- name: install ntp
+  become: true
+  yum:
+    name:
+      - ntp
+    state: present
+    update_cache: yes
+
+- name: Start and Enable ntp service
+  become: true
+  service: name=ntpd state=started enabled=yes
