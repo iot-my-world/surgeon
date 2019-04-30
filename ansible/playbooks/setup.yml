@@ -1,6 +1,5 @@
 ---
-#- hosts: brain, nerve, kafka
-- hosts: brain
+- hosts: brain, nerve, kafka
   roles:
     #    - hardenSecurity
     - installSoftware

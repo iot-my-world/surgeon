@@ -1,8 +1,9 @@
 ---
 # packages
-additionalYumPackages:
+additionalYumRepos: []
+additionalYumPackages: []
 
 # users
-additionalHumanUsers:
+additionalHumanUsers: []
 additionalSystemUsers:
   - name: kafka

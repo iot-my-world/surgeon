@@ -18,6 +18,6 @@ additionalYumPackages:
   - python-pip
 
 # users
-additionalHumanUsers:
+additionalHumanUsers: []
 additionalSystemUsers:
   - name: brain

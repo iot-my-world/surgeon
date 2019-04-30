@@ -1,5 +1,6 @@
 ---
 - name: Add repos
+  become: true
   yum_repository:
     name: "{{ item['name'] }}"
     description: "{{ item['description'] }}"
@@ -12,6 +13,7 @@
     - "{{ yumRepos }}"
 
 - name: Add additional repos
+  become: true
   yum_repository:
     name: "{{ item['name'] }}"
     description: "{{ item['description'] }}"
@@ -22,3 +24,21 @@
     # enabled: default is yes
   with_items:
     - "{{ additionalYumRepos }}"
+
+- name: Add Yum Packages
+  become: true
+  yum:
+    name: "{{ item['name'] }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "{{ yumPackages }}"
+
+- name: Add Additional Yum Packages
+  become: true
+  yum:
+    name: "{{ item['name'] }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "{{ additionalYumPackages }}"
