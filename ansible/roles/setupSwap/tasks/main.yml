@@ -12,18 +12,22 @@
     - name: Create swap File
       become: true
       command: dd if="{{ if }}" of="{{ of }}" count="{{ count }}" bs="{{ bs }}"
+      notify: reboot
 
     - name: Make swap only root readable
       become: true
       command: chmod 600 "{{ of }}"
+      notify: reboot
 
     - name: Format file as swap
       become: true
       command: mkswap "{{ of }}"
+      notify: reboot
 
     - name: Tell system to use it as swap
       become: true
       command: swapon "{{ of }}"
+      notify: reboot
 
     - name: Make system use swap file on every startup
       become: true
@@ -32,6 +36,7 @@
         regexp: "swapfile"
         line: '"{{ of }}" none swap sw 0 0'
         state: present
+      notify: reboot
 
   when: swap_status.stdout == ""
 
