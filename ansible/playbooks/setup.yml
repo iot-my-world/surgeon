@@ -1,6 +1,7 @@
 ---
 - hosts: brain, nerve, kafka
   roles:
+    - setLocale
     - hardenSecurity
     - installSoftware
     - timeSynchronisation
