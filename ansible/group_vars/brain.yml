@@ -13,9 +13,7 @@ additionalYumRepos:
     gpgcheck: yes
     gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
 
-additionalYumPackages:
-  - mongodb-org
-  - python-pip
+additionalYumPackages: [mongodb-org, python-pip]
 
 # users
 additionalHumanUsers: []

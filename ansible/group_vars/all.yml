@@ -5,8 +5,7 @@ brainMongoUserPassword: theInsideOfTheBrainContainsNeurons
 
 # packages
 yumRepos: []
-yumPackages:
-  - vim
+yumPackages: [vim]
 
 # Users
 systemUsers: []

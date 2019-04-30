@@ -28,13 +28,13 @@
 - name: Add Yum Packages
   become: true
   yum:
-    name: ["{{ yumPackages }}"]
+    name: "{{ yumPackages }}"
     state: present
     update_cache: yes
 
 - name: Add Additional Yum Packages
   become: true
   yum:
-    name: ["{{ additionalYumPackages }}"]
+    name: "{{ additionalYumPackages }}"
     state: present
     update_cache: yes
