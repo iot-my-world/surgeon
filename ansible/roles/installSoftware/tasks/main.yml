@@ -40,5 +40,6 @@
     update_cache: yes
 
 - name: Install required python packages
+  become: true
   pip:
     name: "{{ pythonPackages }}"
