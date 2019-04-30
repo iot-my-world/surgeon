@@ -1,10 +1,8 @@
 ---
-# - hosts: brain, nerve, kafka
-- hosts: brain
-  gather_facts: false
+- hosts: brain, nerve, kafka
   roles:
-    # - setLocale
-    # - hardenSecurity
+    - setLocale
+    - hardenSecurity
     - setupSwap
-    # - installSoftware
-    # - timeSynchronisation
+    - installSoftware
+    - timeSynchronisation
