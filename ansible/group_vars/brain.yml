@@ -17,6 +17,8 @@ additionalYumRepos:
 
 additionalYumPackages: [mongodb-org, python-pip]
 
+pythonPackages: [pymongo]
+
 # users
 additionalHumanUsers: []
 additionalSystemUsers:

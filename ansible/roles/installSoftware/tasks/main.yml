@@ -38,3 +38,7 @@
     name: "{{ additionalYumPackages }}"
     state: present
     update_cache: yes
+
+- name: Install required python packages
+  pip:
+    name: "{{ pythonPackages }}"
