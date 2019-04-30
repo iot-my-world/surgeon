@@ -39,7 +39,9 @@
     state: present
     update_cache: yes
 
-- name: Install required python packages
+- name: Install "{{ item }}" python package
   become: true
   pip:
-    name: "{{ pythonPackages }}"
+    name: "{{ item }}"
+  with_items:
+    - "{{ pythonPackages }}"
