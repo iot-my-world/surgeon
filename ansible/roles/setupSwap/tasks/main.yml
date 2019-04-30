@@ -4,10 +4,6 @@
   command: swapon -s
   register: swap_status
 
-- debug:
-    var: swap_status
-    verbosity: 0
-
 - block:
     - name: Create swap File
       become: true
