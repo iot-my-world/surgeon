@@ -39,9 +39,8 @@
     state: present
     update_cache: yes
 
-- name: Install "{{ item }}" python package
+- name: Install python packages
   become: true
   pip:
-    name: "{{ item }}"
-  with_items:
-    - "{{ pythonPackages }}"
+    name: "{{ pythonPackages }}"
+  when: "pythonPackages | length > 0"
