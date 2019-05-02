@@ -7,7 +7,7 @@ timeZone: Africa/Johannesburg
 
 # packages
 yumRepos: []
-yumPackages: [vim]
+yumPackages: [vim, zsh]
 
 # Users
 systemUsers: []
