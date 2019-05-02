@@ -3,6 +3,7 @@
   become: true
   command: swapon -s
   register: swap_status
+  changed_when: swap_status.stdout == ""
 
 - block:
     - name: Create swap File
