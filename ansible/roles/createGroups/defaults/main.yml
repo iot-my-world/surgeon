@@ -1,2 +1,9 @@
 ---
-# defaults file for createGroups
+systemUsers: []
+additionalSystemUsers: []
+
+humanUsers: []
+additionalHumanUsers: []
+# human users should take the following structure
+# - name: bernard
+#   public_key: ssh-rsa AAA...

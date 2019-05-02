@@ -1,2 +1,32 @@
 ---
-# tasks file for createGroups
+- name: Create system user groups
+  become: true
+  group:
+    name: "{{ item['name'] }}"
+    state: present
+  with_items:
+    - "{{ systemUsers }}"
+
+- name: Create additional system user groups
+  become: true
+  group:
+    name: "{{ item['name'] }}"
+    state: present
+  with_items:
+    - "{{ additionalSystemUsers }}"
+
+- name: Create human user groups
+  become: true
+  group:
+    name: "{{ item['name'] }}"
+    state: present
+  with_items:
+    - "{{ humanUsers }}"
+
+- name: Create additional human user groups
+  become: true
+  group:
+    name: "{{ item['name'] }}"
+    state: present
+  with_items:
+    - "{{ additionalHumanUsers }}"
