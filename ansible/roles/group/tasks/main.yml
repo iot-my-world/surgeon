@@ -31,3 +31,19 @@
     state: present
   with_items:
     - "{{ additionalHumanUsers }}"
+
+- name: Remove groups
+  become: true
+  group:
+    name: "{{ item['name'] }}"
+    state: absent
+  with_items:
+    - "{{ groupsToRemove }}"
+
+- name: Remove additional groups
+  become: true
+  group:
+    name: "{{ item['name'] }}"
+    state: absent
+  with_items:
+    - "{{ additionalGroupsToRemove }}"

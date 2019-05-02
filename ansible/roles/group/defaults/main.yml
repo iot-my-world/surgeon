@@ -16,3 +16,9 @@ additionalHumanUsers: []
 #   public_key: ssh-rsa BBB...
 # ...
 
+groupsToRemove: []
+additionalGroupsToRemove: []
+# groupsToRemove should take the following structure
+# - name: bob
+# - name: sam
+# ...
