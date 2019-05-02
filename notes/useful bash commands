@@ -1,0 +1,4 @@
+# to list groups:
+groups
+# or
+cut -d: -f1 /etc/group | sort
