@@ -1,2 +1,20 @@
 ---
-# defaults file for createUsers
+systemUsers: []
+additionalSystemUsers: []
+# system users should take the following structure
+# - name: brain
+#   groups: [sudo, brain, ...]
+# - name: nerve
+#   groups: [sudo, nerve, ...]
+# ...
+
+humanUsers: []
+additionalHumanUsers: []
+# human users should take the following structure
+# - name: bernard
+#   groups: [sudo, bernard, ...]
+#   public_key: ssh-rsa AAA...
+# - name: paul
+#   groups: [sudo, paul, ...]
+#   public_key: ssh-rsa BBB...
+# ...

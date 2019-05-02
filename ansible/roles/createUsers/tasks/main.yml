@@ -1,2 +1,48 @@
 ---
-# tasks file for createUsers
+- name: Create system users
+  become: true
+  user:
+    name: "{{ item['name'] }}"
+    groups: "{{ item['groups'] }}"
+    # append: no
+    # user will only be added to the groups specified in groups
+    # user will be removed from any other groups
+    # shell: /bin/zsh
+  with_items:
+    - "{{ systemUsers }}"
+
+- name: Create additional system users
+  become: true
+  user:
+    name: "{{ item['name'] }}"
+    groups: "{{ item['groups'] }}"
+    # append: no
+    # user will only be added to the groups specified in groups
+    # user will be removed from any other groups
+    # shell: /bin/zsh
+  with_items:
+    - "{{ additionalSystemUsers }}"
+
+- name: Create human users
+  become: true
+  user:
+    name: "{{ item['name'] }}"
+    groups: "{{ item['groups'] }}"
+    # append: no
+    # user will only be added to the groups specified in groups
+    # user will be removed from any other groups
+    # shell: /bin/zsh
+  with_items:
+    - "{{ humanUsers }}"
+
+- name: Create additional human users
+  become: true
+  user:
+    name: "{{ item['name'] }}"
+    groups: "{{ item['groups'] }}"
+    # append: no
+    # user will only be added to the groups specified in groups
+    # user will be removed from any other groups
+    # shell: /bin/zsh
+  with_items:
+    - "{{ additionalHumanUsers }}"

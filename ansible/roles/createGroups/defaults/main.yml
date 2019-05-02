@@ -1,9 +1,16 @@
 ---
 systemUsers: []
 additionalSystemUsers: []
+# system users should take the following structure
+# - name: brain
+# - name: nerve
+# ...
 
 humanUsers: []
 additionalHumanUsers: []
 # human users should take the following structure
 # - name: bernard
 #   public_key: ssh-rsa AAA...
+# - name: paul
+#   public_key: ssh-rsa BBB...
+# ...
