@@ -1,12 +1,7 @@
 ---
-- hosts: brain
+- hosts: brain, nerve, kafka
   roles:
-    - brain
-
-- hosts: nerve
-  roles:
-    - nerve
-
-- hosts: kafka
-  roles:
-    - kafka
+    - setLocale
+    - hardenSecurity
+    - setupSwap
+    - installSoftware

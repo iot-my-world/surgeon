@@ -1,4 +1,0 @@
----
-- include_role:
-    name: "{{ item }}"
-  with_items: [setLocale, hardenSecurity, setupSwap, installSoftware]
