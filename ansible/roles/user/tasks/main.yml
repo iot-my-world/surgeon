@@ -1,47 +1,53 @@
 ---
 # tasks file for user
-- name: Create system users
-  become: true
-  user:
-    name: "{{ item['name'] }}"
-    groups: "{{ item['groups'] }}"
-    # append: no
-    # user will only be added to the groups specified in groups
-    # user will be removed from any other groups
-    shell: /bin/zsh
-  with_items:
-    - "{{ systemUsers }}"
+# - name: Create system users
+#   become: true
+#   user:
+#     name: "{{ item['name'] }}"
+#     groups: "{{ item['groups'] }}"
+#     # append: no
+#     # user will only be added to the groups specified in groups
+#     # user will be removed from any other groups
+#     shell: /bin/zsh
+#   with_items:
+#     - "{{ systemUsers }}"
 
-- name: Create additional system users
-  become: true
-  user:
-    name: "{{ item['name'] }}"
-    groups: "{{ item['groups'] }}"
-    # append: no
-    # user will only be added to the groups specified in groups
-    # user will be removed from any other groups
-    shell: /bin/zsh
-  with_items:
-    - "{{ additionalSystemUsers }}"
+# - name: Create additional system users
+#   become: true
+#   user:
+#     name: "{{ item['name'] }}"
+#     groups: "{{ item['groups'] }}"
+#     # append: no
+#     # user will only be added to the groups specified in groups
+#     # user will be removed from any other groups
+#     shell: /bin/zsh
+#   with_items:
+#     - "{{ additionalSystemUsers }}"
 
-- name: Create human users
-  become: true
-  user:
-    name: "{{ item['name'] }}"
-    groups: "{{ item['groups'] }}"
-    # append: no
-    # user will only be added to the groups specified in groups
-    # user will be removed from any other groups
-    shell: /bin/zsh
-  with_items:
-    - "{{ humanUsers }}"
+# - name: Create human users
+#   become: true
+#   user:
+#     name: "{{ item['name'] }}"
+#     groups: "{{ item['groups'] }}"
+#     # append: no
+#     # user will only be added to the groups specified in groups
+#     # user will be removed from any other groups
+#     shell: /bin/zsh
+#   with_items:
+#     - "{{ humanUsers }}"
 
-- name: Set human users authorized keys
-  become: true
-  authorized_key:
-    user: "{{ item['name'] }}"
-    key: "{{ item['publicKey'] }}"
-    state: present
+# - name: Set human users authorized keys
+#   become: true
+#   authorized_key:
+#     user: "{{ item['name'] }}"
+#     key: "{{ item['publicKey'] }}"
+#     state: present
+#   with_items:
+#     - "{{ humanUsers }}"
+
+- name: Install oh-my-zsh
+  include_role:
+    name: ohMyZSH
   with_items:
     - "{{ humanUsers }}"
 

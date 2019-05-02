@@ -1,0 +1,12 @@
+---
+- block:
+    - name: Check if oh-my-zsh already installed
+      stat:
+        path: /home/"{{ item['name'] }}"/.oh-my-zsh
+      register: oh_my_zsh_directory_details
+
+    - debug:
+        msg: "oh-my-zsh Already installed"
+      when: oh_my_zsh_directory_details.stat.exists
+
+  when: "item['name'] != '_override_'"
