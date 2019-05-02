@@ -36,6 +36,15 @@
   with_items:
     - "{{ humanUsers }}"
 
+- name: Set human users authorized keys
+  become: true
+  authorized_key:
+    user: "{{ item['name'] }}"
+    key: "{{ item['publicKey'] }}"
+    state: present
+  with_items:
+    - "{{ humanUsers }}"
+
 - name: Create additional human users
   become: true
   user:
@@ -45,5 +54,14 @@
     # user will only be added to the groups specified in groups
     # user will be removed from any other groups
     # shell: /bin/zsh
+  with_items:
+    - "{{ additionalHumanUsers }}"
+
+- name: Set additional human users authorized keys
+  become: true
+  authorized_key:
+    user: "{{ item['name'] }}"
+    key: "{{ item['publicKey'] }}"
+    state: present
   with_items:
     - "{{ additionalHumanUsers }}"
