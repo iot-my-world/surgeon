@@ -23,3 +23,4 @@ pythonPackages: [pymongo]
 additionalHumanUsers: []
 additionalSystemUsers:
   - name: brain
+    groups: [sudo, brain]

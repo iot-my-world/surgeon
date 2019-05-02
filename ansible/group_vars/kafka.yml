@@ -7,3 +7,4 @@ additionalYumPackages: []
 additionalHumanUsers: []
 additionalSystemUsers:
   - name: kafka
+    groups: [sudo, kakfa]
