@@ -1,0 +1,5 @@
+---
+- hosts: brain, nerve
+  gather_facts: false
+  roles:
+    - gitlabCIUser

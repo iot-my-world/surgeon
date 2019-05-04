@@ -1,0 +1,30 @@
+---
+# tasks file for gitlabCIUser
+- name: Create gitlabci User
+  become: true
+  user:
+    name: gitlabci
+
+- name: Set gitlabci Users authorized key
+  become: true
+  authorized_key:
+    user: gitlabci
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+e/7AvnBhCNiOJMBvyCLmMxLqNIIJsv4nu3oNk9BExPsfG3CRvPT1mLV0fDjsdutOeVW4nbNenQE5EeulZ0IANQD/avD5hxe6x/+RQurYuxnBsJf2BqBt6qTv2eFfoLLFZRSzS1cVV6GFV8XZSm4SyYQaJpyMoJmq7JPceU8Al5gBS159KRbVeLdzl+KJCAOPRISrEb8wtPX/wtsmdKxlpe3LICbE8Xew5UGeIix53DvITAZDVsxrsLAiYIbkj/Ws83eWLLbkrAMBzuWfOlK/t/ssegwTSKpQ8W6XlzsO3VoKiFqMU/E231SvBeX0Z4f+/MIJU4uBMNwqRPpffWlh bernardbussy@FVFVXUF5J1WK-MacAir.local
+    state: present
+
+- name: set allowed commands for gitlabci user
+  become: true
+  blockinfile:
+    path: /etc/sudoers
+    block: |
+      gitlabci  ALL=(brain)  NOPASSWD: ALL
+      gitlabci  ALL = NOPASSWD: /bin/mv /home/gitlabci/brain /home/brain
+      gitlabci  ALL = NOPASSWD: /bin/systemctl stop brain.service
+      gitlabci  ALL = NOPASSWD: /bin/systemctl start brain.service
+      gitlabci  ALL = NOPASSWD: /bin/tar -xvf  portal.tar
+      gitlabci  ALL = NOPASSWD: /bin/rm -rf /var/www/*
+      gitlabci  ALL = NOPASSWD: /bin/cp -r build/* /var/www/
+      gitlabci  ALL = NOPASSWD: /bin/rm -rf /home/gitlabci/*
+      gitlabci  ALL = NOPASSWD: /bin/mv /home/gitlabci/nerve /home/nerve
+      gitlabci  ALL = NOPASSWD: /bin/systemctl stop nerve.service
+      gitlabci  ALL = NOPASSWD: /bin/systemctl start nerve.service
