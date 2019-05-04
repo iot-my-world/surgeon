@@ -8,25 +8,29 @@
 
 - name: Create kafka download directory
   file:
-    path: ~/downloads
+    path: /home/surgeon/downloads
     state: directory
 
 - name: Create kafka program directory
+  become: true
   file:
-    path: ~/kafka
+    path: /home/kafka/kafka
     state: directory
+    group: kafka
+    owner: kafka
 
 - name: Download kafka binaries
   get_url:
     url: https://www.apache.org/dist/kafka/2.1.1/kafka_2.11-2.1.1.tgz
-    dest: ~/downloads/kafka.tgz
+    dest: /home/surgeon/downloads/kafka.tgz
 
 - name: Extract kafka
+  become: true
   unarchive:
-    src: ~/downloads/kafka.tgz
-    dest: ~/kafka
+    src: /home/surgeon/downloads/kafka.tgz
+    dest: /home/kafka/kafka
     remote_src: yes
     extra_opts:
-      - --strip 1
+      - --strip=1
     group: kafka
     owner: kafka
