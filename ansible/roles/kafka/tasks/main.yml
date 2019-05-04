@@ -5,3 +5,8 @@
     name: java-1.8.0-openjdk
     state: present
     update_cache: yes
+
+- name: Download Kafka Binaries
+  get_url:
+    url: https://www.apache.org/dist/kafka/2.1.1/kafka_2.11-2.1.1.tgz
+    dest: ~/Downloads/kafka.tgz
