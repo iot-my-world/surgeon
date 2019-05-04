@@ -33,7 +33,8 @@
     src: CaddyFile.j2
     dest: /etc/caddy/CaddyFile
     owner: root
-    group: caddy # notify: restart caddy
+    group: caddy
+  notify: restart caddy
 
 - name: configure caddy service daemon
   become: true
@@ -42,8 +43,8 @@
     dest: /etc/systemd/system/caddy.service
     owner: root
     group: caddy
+  notify: restart caddy
 
-  # notify: restart caddy
 - name: create directory for SSL keys for https
   become: true
   file:
