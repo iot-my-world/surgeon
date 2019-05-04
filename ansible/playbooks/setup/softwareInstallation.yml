@@ -1,5 +1,6 @@
 ---
 - hosts: brain, nerve, kafka
-  gather_facts: false
+  gather_facts: true
   roles:
+    - epelInstall
     - installSoftware
