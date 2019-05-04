@@ -34,3 +34,43 @@
       - --strip=1
     group: kafka
     owner: kafka
+
+- name: configure zookeeper
+  become: true
+  template:
+    src: zookeeper.properties.j2
+    dest: /home/kafka/kafka/config/zookeeper.properties
+    owner: kafka
+    group: kafka
+    mode: go-w
+  notify: restart zookeeper
+
+- name: configure kafka
+  become: true
+  template:
+    src: server.properties.j2
+    dest: /home/kafka/kafka/config/server.properties
+    owner: kafka
+    group: kafka
+    mode: go-w
+  notify: restart kafka
+
+- name: configure zookeeper service daemon
+  become: true
+  template:
+    src: zookeeper.service.j2
+    dest: /etc/systemd/system/zookeeper.service
+    owner: root
+    group: kafka
+    mode: go-w
+  notify: restart zookeeper
+
+- name: configure kafka service daemon
+  become: true
+  template:
+    src: kafka.service.j2
+    dest: /etc/systemd/system/kafka.service
+    owner: root
+    group: kafka
+    mode: go-w
+  notify: restart kafka

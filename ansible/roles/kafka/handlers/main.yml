@@ -1,2 +1,17 @@
 ---
 # handlers file for kafka
+- name: restart zookeeper
+  become: true
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+    name: zookeeper
+
+- name: restart kafka
+  become: true
+  systemd:
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+    name: kafka

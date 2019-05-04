@@ -1,2 +1,5 @@
 ---
 # defaults file for kafka
+zookeeperClientPort: 2181
+zookeeperHostAddress: localhost
+zookeeperMaxClientCnxns: 0 # i.e. no limit
