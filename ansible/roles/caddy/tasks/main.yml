@@ -13,13 +13,21 @@
     groups: [caddy]
     system: yes
 
-- name: create directory for caddyFile
+- name: create directory for CaddyFile
   become: true
   file:
     path: /etc/caddy
     state: directory
     owner: root
     group: caddy
+
+- name: configure CaddyFile
+  become: true
+  template:
+    src: CaddyFile.j2
+    dest: /etc/caddy/CaddyFile
+    owner: root
+    group: caddy # notify: restart caddy
 
 - name: create directory for SSL keys for https
   become: true
