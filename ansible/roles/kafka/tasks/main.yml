@@ -1,2 +1,7 @@
 ---
-# tasks file for kafka
+- name: Install java OpenJDK 8
+  become: true
+  yum:
+    name: java-1.8.0-openjdk
+    state: present
+    update_cache: yes
