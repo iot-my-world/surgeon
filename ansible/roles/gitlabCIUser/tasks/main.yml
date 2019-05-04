@@ -9,7 +9,7 @@
   become: true
   authorized_key:
     user: gitlabci
-    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+e/7AvnBhCNiOJMBvyCLmMxLqNIIJsv4nu3oNk9BExPsfG3CRvPT1mLV0fDjsdutOeVW4nbNenQE5EeulZ0IANQD/avD5hxe6x/+RQurYuxnBsJf2BqBt6qTv2eFfoLLFZRSzS1cVV6GFV8XZSm4SyYQaJpyMoJmq7JPceU8Al5gBS159KRbVeLdzl+KJCAOPRISrEb8wtPX/wtsmdKxlpe3LICbE8Xew5UGeIix53DvITAZDVsxrsLAiYIbkj/Ws83eWLLbkrAMBzuWfOlK/t/ssegwTSKpQ8W6XlzsO3VoKiFqMU/E231SvBeX0Z4f+/MIJU4uBMNwqRPpffWlh bernardbussy@FVFVXUF5J1WK-MacAir.local
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdPcSxvXYhVrt+IGU7zVWiR2H75CuKnGD8/W5B+fb2Th4uYuNKfWlZEj9naRK1jw0W7SYYk4DS7rzDGnuQzLqmwrOqnq/c32Azbg3YdikLckKFJsOBvbbklPJnTU+qW6CNEG1nyZjoMkrGqSXJeomcK6lynCHAMwpWCWKJL7eJkvydRtKhlX0pGtxcAlkZlsOWf09nrGZeRVcoYETyuouOqeillhDHEPTb9NqZPbT/b8XDLK+Fy0CmzuIP8hrdkgoBBBRqv2EZFkP80mHMidnru/22WDU0jZSRNeSe7ZX6mUB1Xnn5VVkdiFMqKXUl1rkDOyKxw7MuHxx0+TRmkkwp bernardbussy@FVFVXUF5J1WK-MacAir.local
     state: present
 
 - name: set allowed commands for gitlabci user
