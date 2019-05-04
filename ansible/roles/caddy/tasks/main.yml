@@ -43,11 +43,11 @@
     owner: root
     group: caddy
 
-- name: configure CaddyFile
+- name: configure Caddyfile
   become: true
   template:
-    src: CaddyFile.j2
-    dest: /etc/caddy/CaddyFile
+    src: Caddyfile.j2
+    dest: /etc/caddy/Caddyfile
     owner: root
     group: caddy
   notify: restart caddy
