@@ -1,5 +1,21 @@
 ---
 # tasks file for caddy
+- name: Allow http through Firewall
+  become: true
+  firewalld:
+    service: http
+    immediate: yes
+    permanent: yes
+    state: enabled
+
+- name: Allow https through Firewall
+  become: true
+  firewalld:
+    service: https
+    immediate: yes
+    permanent: yes
+    state: enabled
+
 - name: Create group for caddy
   become: true
   group:
@@ -61,3 +77,10 @@
     state: directory
     owner: caddy
     group: caddy
+
+- name: start and enable caddy
+  become: true
+  systemd:
+    state: started
+    enabled: yes
+    name: caddy
