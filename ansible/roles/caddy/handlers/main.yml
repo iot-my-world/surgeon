@@ -1,9 +1,14 @@
 ---
 # handlers file for caddy
+- name: reload and restart caddy
+  become: true
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: caddy
+
 - name: restart caddy
   become: true
   systemd:
     state: restarted
-    enabled: yes
-    daemon_reload: yes
     name: caddy

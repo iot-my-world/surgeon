@@ -59,7 +59,7 @@
     dest: /etc/systemd/system/caddy.service
     owner: root
     group: caddy
-  notify: restart caddy
+  notify: reload and restart caddy
 
 - name: create directory for SSL keys for https
   become: true
