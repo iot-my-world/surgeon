@@ -6,7 +6,27 @@
     state: present
     update_cache: yes
 
-- name: Download Kafka Binaries
+- name: Create kafka download directory
+  file:
+    path: ~/downloads
+    state: directory
+
+- name: Create kafka program directory
+  file:
+    path: ~/kafka
+    state: directory
+
+- name: Download kafka binaries
   get_url:
     url: https://www.apache.org/dist/kafka/2.1.1/kafka_2.11-2.1.1.tgz
-    dest: ~/Downloads/kafka.tgz
+    dest: ~/downloads/kafka.tgz
+
+- name: Extract kafka
+  unarchive:
+    src: ~/downloads/kafka.tgz
+    dest: ~/kafka
+    remote_src: yes
+    extra_opts:
+      - --strip 1
+    group: kafka
+    owner: kafka
