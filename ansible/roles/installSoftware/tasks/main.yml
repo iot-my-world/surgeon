@@ -1,5 +1,5 @@
 ---
-- name: Add repos
+- name: Add yum repos
   become: true
   yum_repository:
     name: "{{ item['name'] }}"
@@ -11,33 +11,16 @@
     # enabled: default is yes
   with_items:
     - "{{ yumRepos }}"
-
-- name: Add additional repos
-  become: true
-  yum_repository:
-    name: "{{ item['name'] }}"
-    description: "{{ item['description'] }}"
-    # file: defaults to name.repo
-    baseurl: "{{ item['baseurl'] }}"
-    gpgcheck: "{{ item['gpgcheck'] }}"
-    gpgkey: "{{ item['gpgkey'] }}"
-    # enabled: default is yes
-  with_items:
     - "{{ additionalYumRepos }}"
 
 - name: Add Yum Packages
   become: true
   yum:
-    name: "{{ yumPackages }}"
+    name: "{{ item }}"
     state: present
     update_cache: yes
-
-- name: Add Additional Yum Packages
-  become: true
-  yum:
-    name: "{{ additionalYumPackages }}"
-    state: present
-    update_cache: yes
+  with_items:
+    - ["{{ yumPackages }}", "{{ additionalYumPackages }}"]
 
 - name: Install python packages
   become: true
