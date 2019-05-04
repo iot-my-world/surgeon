@@ -1,2 +1,39 @@
 ---
 # tasks file for caddy
+- name: Create group for caddy
+  become: true
+  group:
+    name: caddy
+    state: present
+
+- name: Create user for caddy
+  become: true
+  user:
+    name: caddy
+    groups: [caddy]
+    system: yes
+
+- name: create directory for caddyFile
+  become: true
+  file:
+    path: /etc/caddy
+    state: directory
+    owner: root
+    group: caddy
+
+- name: create directory for SSL keys for https
+  become: true
+  file:
+    path: /etc/ssl/caddy
+    state: directory
+    owner: caddy
+    group: root
+    mode: 0770
+
+- name: make website directory
+  become: true
+  file:
+    path: /var/www
+    state: directory
+    owner: caddy
+    group: caddy
