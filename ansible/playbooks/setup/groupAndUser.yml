@@ -2,5 +2,5 @@
 - hosts: brain, nerve, kafka
   gather_facts: false
   roles:
-    # - group
+    - group
     - user
