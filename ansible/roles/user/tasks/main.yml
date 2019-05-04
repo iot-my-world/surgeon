@@ -1,57 +1,6 @@
 ---
 # tasks file for user
-# - name: Create system users
-#   become: true
-#   user:
-#     name: "{{ item['name'] }}"
-#     groups: "{{ item['groups'] }}"
-#     # append: no
-#     # user will only be added to the groups specified in groups
-#     # user will be removed from any other groups
-#     shell: /bin/zsh
-#   with_items:
-#     - "{{ systemUsers }}"
-
-# - name: Create additional system users
-#   become: true
-#   user:
-#     name: "{{ item['name'] }}"
-#     groups: "{{ item['groups'] }}"
-#     # append: no
-#     # user will only be added to the groups specified in groups
-#     # user will be removed from any other groups
-#     shell: /bin/zsh
-#   with_items:
-#     - "{{ additionalSystemUsers }}"
-
-# - name: Create human users
-#   become: true
-#   user:
-#     name: "{{ item['name'] }}"
-#     groups: "{{ item['groups'] }}"
-#     # append: no
-#     # user will only be added to the groups specified in groups
-#     # user will be removed from any other groups
-#     shell: /bin/zsh
-#   with_items:
-#     - "{{ humanUsers }}"
-
-# - name: Set human users authorized keys
-#   become: true
-#   authorized_key:
-#     user: "{{ item['name'] }}"
-#     key: "{{ item['publicKey'] }}"
-#     state: present
-#   with_items:
-#     - "{{ humanUsers }}"
-
-- name: Install oh-my-zsh
-  include_role:
-    name: ohMyZSH
-  with_items:
-    - "{{ humanUsers }}"
-
-- name: Create additional human users
+- name: Create users
   become: true
   user:
     name: "{{ item['name'] }}"
@@ -61,13 +10,39 @@
     # user will be removed from any other groups
     shell: /bin/zsh
   with_items:
+    - "{{ systemUsers }}"
+    - "{{ additionalSystemUsers }}"
+    - "{{ humanUsers }}"
     - "{{ additionalHumanUsers }}"
 
-- name: Set additional human users authorized keys
+- name: Set human users authorized keys
   become: true
   authorized_key:
     user: "{{ item['name'] }}"
     key: "{{ item['publicKey'] }}"
     state: present
   with_items:
+    - "{{ humanUsers }}"
+    - "{{ additionalHumanUsers }}"
+
+- name: Clone oh-my-zsh repo for users
+  become: true
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest="/home/{{ item['name'] }}/.oh-my-zsh"
+  with_items:
+    - "{{ systemUsers }}"
+    - "{{ additionalSystemUsers }}"
+    - "{{ humanUsers }}"
+    - "{{ additionalHumanUsers }}"
+
+- name: configure oh-my-zsh for users
+  become: true
+  template:
+    src: zshrc.j2
+    dest: "/home/{{ item['name'] }}/.zshrc"
+    owner: "{{ item['name'] }}"
+    group: "{{ item['name'] }}"
+  with_items:
+    - "{{ systemUsers }}"
+    - "{{ additionalSystemUsers }}"
+    - "{{ humanUsers }}"
     - "{{ additionalHumanUsers }}"
