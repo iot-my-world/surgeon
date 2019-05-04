@@ -13,6 +13,12 @@
     groups: [caddy]
     system: yes
 
+- name: copy caddy binary to server
+  become: true
+  copy:
+    src: caddy
+    dest: /usr/local/bin/caddy
+
 - name: create directory for CaddyFile
   become: true
   file:
@@ -29,6 +35,15 @@
     owner: root
     group: caddy # notify: restart caddy
 
+- name: configure caddy service daemon
+  become: true
+  template:
+    src: caddy.service.j2
+    dest: /etc/systemd/system/caddy.service
+    owner: root
+    group: caddy
+
+  # notify: restart caddy
 - name: create directory for SSL keys for https
   become: true
   file:
