@@ -1,15 +1,18 @@
 ---
 # tasks file for mongo
-- name: add epel7Server Repo
-  become: true
+- name: add mongo db repo
   yum_repository:
-    name: epel7Server
-    description: epel7Server repo
+    name: mongodb-org-4.0
+    # name: becomes 'repo id' in repolist
+    description: MongoDB Repository
+    # description: becomes 'repo name' in repolist
     # file: defaults to name.repo
-    baseurl: https://dl.fedoraproject.org/pub/epel/7Server/aarch64/
+    baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64
     gpgcheck: yes
-    gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+    gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
     # enabled: default is yes
+    mode: 0644
+    state: present
 
 - name: install mongo
   become: true
@@ -19,9 +22,11 @@
     update_cache: yes
 
 - name: ensure mongo started and enabled
+  become: true
   service: name=mongod state=started enabled=yes
 
 - name: set up brain user on mongo db
+  become: true
   mongodb_user:
     database: admin
     name: brain
