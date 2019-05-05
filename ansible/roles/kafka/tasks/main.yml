@@ -14,11 +14,13 @@
 - name: Set firewall rules for kafka
   become: true
   firewalld:
-    source: "{{ ansible_eth1.ipv4.address }}/{{ kafka_port }}"
-    zone: public
-    immediate: yes
+    port: "{{ kafka_port }}/tcp"
     permanent: yes
     state: enabled
+    zone: internal
+    immediate: yes
+    permanent: yes
+
 
 - name: Install java OpenJDK 8
   become: true

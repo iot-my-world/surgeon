@@ -22,8 +22,10 @@
         state: enabled
 
     - name: Move eth1 to internal zone
+      become: true
       firewalld:
-        zone: trusted
+        zone: internal
         interface: eth1
+        immediate: yes
         permanent: yes
         state: enabled
