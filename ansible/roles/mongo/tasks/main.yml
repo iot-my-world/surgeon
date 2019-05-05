@@ -1,2 +1,33 @@
 ---
 # tasks file for mongo
+- name: add epel7Server Repo
+  become: true
+  yum_repository:
+    name: epel7Server
+    description: epel7Server repo
+    # file: defaults to name.repo
+    baseurl: https://dl.fedoraproject.org/pub/epel/7Server/aarch64/
+    gpgcheck: yes
+    gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+    # enabled: default is yes
+
+- name: install mongo
+  become: true
+  yum:
+    name: mongodb-org
+    state: present
+    update_cache: yes
+
+- name: ensure mongo started and enabled
+  service: name=mongod state=started enabled=yes
+
+- name: set up brain user on mongo db
+  mongodb_user:
+    database: admin
+    name: brain
+    password: "{{ brainMongoUserPassword }}"
+    update_password: always
+    roles:
+      - "userAdminAnyDatabase"
+      - "readWriteAnyDatabase"
+    state: present

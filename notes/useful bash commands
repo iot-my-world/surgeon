@@ -2,3 +2,6 @@
 groups
 # or
 cut -d: -f1 /etc/group | sort
+
+# firewall
+sudo firewall-cmd --list-all-zones
