@@ -1,6 +1,2 @@
 ---
 # db hosts group vars
-mongo_users:
-  - name: "{{ brain_mongo_user[name] }}"
-    password: "{{ brain_mongo_user[password] }}"
-    roles: "{{ brain_mongo_user[roles] }}"

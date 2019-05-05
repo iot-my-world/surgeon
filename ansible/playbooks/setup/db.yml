@@ -1,4 +1,5 @@
 ---
 - hosts: db
+  gather_facts: false
   roles:
     - mongo

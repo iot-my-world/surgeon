@@ -24,7 +24,7 @@ users:
     groups: [sudo, bernard]
     publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBlA9WrDicm09MJLi3l69NNmxI/vRmuoR6j0YlticPqQcoxEOiaC4HMB5l74Ho63A9oUwloHqqORg/qgEqS2FR54xcrIP/1uCwtQcu0TzYKiIrISNsW/6sqVbzzN0b+sF+/vcyNNKwhSm6KBF3G4lSBUx7AaYHC6Ps38OLdDV1cWCw6w2/jM4cklj8g0c8hOgMBX1nT2I3QtHkaXj8fStRUQUYKd0xMIc1ojECW2oM85Bll57LLKulfnKh9JOts+HdAdfMuUDdOHAmg+7MyXsFXXlkzXtl9b/oxHvID9j7IS0/VPyEiowUMkuTYrWdu7FazSEBkTTE4lT4BDqwI8j3 bernardbussy@FVFVXUF5J1WK-MacAir.local
 
-brain_mongo_user:
-  - name: brain
-    password: "theInsideOfTheBrainContainsNeurons"
-    roles: ["userAdminAnyDatabase", "readWriteAnyDatabase"]
+mongo_user:
+  name: brain
+  password: "theInsideOfTheBrainContainsNeurons"
+  roles: ["userAdminAnyDatabase", "readWriteAnyDatabase"]
