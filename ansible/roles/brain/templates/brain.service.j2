@@ -1,0 +1,10 @@
+[Unit]
+Description=Brain
+After=network.target
+[Service]
+ExecStart=/home/brain/brain -mongoUser=brain -mongoPassword=theInsideOfTheBrainContainsNeurons -mailRedirectBaseUrl=https://www.spotnav.co.za -rootPasswordFileLocation=rootPassword -pathToEmailTemplateFolder=resources/email/template
+WorkingDirectory=/home/brain
+Restart=always
+User=brain
+Group=brain
+Environment=PATH=/usr/bin:/usr/local/bin

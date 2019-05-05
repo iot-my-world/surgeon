@@ -1,0 +1,10 @@
+[Unit]
+Description=Nerve
+After=network.target
+[Service]
+WorkingDirectory=/home/nerve
+ExecStart=/home/nerve/nerve
+Restart=always
+User=nerve
+Group=nerve
+Environment=PATH=/usr/bin:/usr/local/bin
