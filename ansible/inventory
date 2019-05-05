@@ -6,3 +6,6 @@ nerve.spotnav.net
 
 [kafka]
 kafka.spotnav.net
+
+[mongo]
+mongo.spotnav.net
