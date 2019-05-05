@@ -1,4 +1,5 @@
 ---
+# sudo firewall-cmd --list-all-zones
 - name: create kafka user group
   become: true
   group:
@@ -15,12 +16,10 @@
   become: true
   firewalld:
     port: "{{ kafka_port }}/tcp"
-    permanent: yes
     state: enabled
     zone: internal
     immediate: yes
     permanent: yes
-
 
 - name: Install java OpenJDK 8
   become: true
