@@ -1,6 +1,12 @@
 ---
-- hosts: brain, nerve, kafka
+- hosts: brain, nerve, messaging, db
   gather_facts: true
   roles:
-    - epelInstall
-    - installSoftware
+    - installEpelRepo
+  tasks:
+    - name: Add Yum Packages
+      become: true
+      yum:
+        name: "{{ yum_packages }}"
+        state: present
+        update_cache: yes

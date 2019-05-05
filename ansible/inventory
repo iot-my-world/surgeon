@@ -1,5 +1,5 @@
 [control]
-control ansible_connection=local
+ctrl ansible_connection=local
 
 [brain]
 brain01.spotnav.net

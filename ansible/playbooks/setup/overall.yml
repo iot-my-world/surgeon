@@ -1,4 +1,10 @@
 ---
-- import_playbook: basic.yml
+- hosts: brain, nerve, messaging, db
+  gather_facts: false
+  roles:
+    - setLocale
+    - hardenSecurity
+    - setupSwap
+
 - import_playbook: softwareInstallation.yml
-# - import_playbook: user.yml
+- import_playbook: groupAndUser.yml
