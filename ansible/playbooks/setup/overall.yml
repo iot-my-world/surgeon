@@ -5,6 +5,6 @@
     - setLocale
     - hardenSecurity
     - setupSwap
-
+- import_playbook: firewall.yml
 - import_playbook: softwareInstallation.yml
 - import_playbook: groupAndUser.yml
