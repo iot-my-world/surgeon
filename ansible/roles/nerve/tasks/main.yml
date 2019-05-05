@@ -1,2 +1,25 @@
 ---
 # tasks file for nerve
+- name: create nerve user group
+  become: true
+  group:
+    name: nerve
+    state: present
+
+- name: create nerve user
+  become: true
+  user:
+    name: nerve
+    groups: nerve
+
+- name: configure nerve service daemon
+  become: true
+  template:
+    src: nerve.service.j2
+    dest: /etc/systemd/system/nerve.service
+    owner: root
+    group: nerve
+  notify: reload nerve daemon
+
+  # notify: restart nerve and reload daemon
+- meta: flush_handlers

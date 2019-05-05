@@ -1,2 +1,13 @@
 ---
 # handlers file for nerve
+- name: reload nerve daemon
+  become: true
+  systemd:
+    name: nerve
+    state: reloaded
+
+- name: restart nerve and reload daemon
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: nerve
