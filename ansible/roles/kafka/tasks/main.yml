@@ -1,4 +1,16 @@
 ---
+- name: create kafka user group
+  become: true
+  group:
+    name: kafka
+    state: present
+
+- name: create kafka user
+  become: true
+  user:
+    name: kafka
+    groups: kafka
+
 - name: Install java OpenJDK 8
   become: true
   yum:
@@ -8,7 +20,7 @@
 
 - name: Create kafka download directory
   file:
-    path: /home/surgeon/downloads
+    path: "/home/{{ ansible_user }}}/downloads"
     state: directory
 
 - name: Create kafka program directory
@@ -27,33 +39,13 @@
 - name: Extract kafka
   become: true
   unarchive:
-    src: /home/surgeon/downloads/kafka.tgz
+    src: "/home/{{ ansible_user }}}/downloads/kafka.tgz"
     dest: /home/kafka/kafka
     remote_src: yes
     extra_opts:
       - --strip=1
     group: kafka
     owner: kafka
-
-- name: configure zookeeper
-  become: true
-  template:
-    src: zookeeper.properties.j2
-    dest: /home/kafka/kafka/config/zookeeper.properties
-    owner: kafka
-    group: kafka
-    mode: go-w
-  notify: restart zookeeper
-
-- name: configure kafka
-  become: true
-  template:
-    src: server.properties.j2
-    dest: /home/kafka/kafka/config/server.properties
-    owner: kafka
-    group: kafka
-    mode: go-w
-  notify: restart kafka
 
 - name: configure zookeeper service daemon
   become: true
@@ -62,8 +54,7 @@
     dest: /etc/systemd/system/zookeeper.service
     owner: root
     group: kafka
-    mode: go-w
-  notify: restart zookeeper
+  notify: reload zookeeper daemon
 
 - name: configure kafka service daemon
   become: true
@@ -72,5 +63,30 @@
     dest: /etc/systemd/system/kafka.service
     owner: root
     group: kafka
-    mode: go-w
+  notify: reload kafka daemon
+
+- meta: flush_handlers
+
+- name: configure zookeeper
+  become: true
+  template:
+    src: zookeeper.properties.j2
+    dest: /home/kafka/kafka/config/zookeeper.properties
+    owner: kafka
+    group: kafka
+  notify: restart zookeeper
+
+- name: start and enable zookeeper
+  service: name=zookeeper state=started enabled=yes
+
+- name: configure kafka
+  become: true
+  template:
+    src: server.properties.j2
+    dest: /home/kafka/kafka/config/server.properties
+    owner: kafka
+    group: kafka
   notify: restart kafka
+
+- name: start and enable kafka
+  service: name=kafka state=started enabled=yes
