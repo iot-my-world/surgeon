@@ -1,2 +1,5 @@
 ---
 # handlers file for updateSystem
+- name: reboot
+  become: true
+  reboot:

@@ -1,5 +1,5 @@
 ---
-- hosts: brain, nerve, kafka, mongo
+- hosts: brain, nerve, messaging, db
   vars:
     ansible_ssh_user: root
   roles:
