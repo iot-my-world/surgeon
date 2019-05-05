@@ -1,5 +1,5 @@
 ---
-- hosts: kafka
+- hosts: messaging
   gather_facts: false
   roles:
     - kafka
