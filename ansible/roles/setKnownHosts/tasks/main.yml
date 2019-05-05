@@ -1,2 +1,10 @@
 ---
 # tasks file for setKnownHosts
+- name: set known hosts
+  become: true
+  known_hosts:
+    path: "{{ known_hosts_path }}"
+    name: "{{ item['name'] }}"
+    key: "{{ item['key'] }}"
+  with_items:
+    - "{{ known_hosts }}"

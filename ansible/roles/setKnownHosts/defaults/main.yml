@@ -1,2 +1,4 @@
 ---
 # defaults file for setKnownHosts
+known_hosts_path: "~/.ssh/known_hosts"
+known_hosts: []
