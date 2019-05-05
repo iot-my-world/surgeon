@@ -11,6 +11,15 @@
     name: kafka
     groups: kafka
 
+- name: Set firewall rules for kafka
+  become: true
+  firewalld:
+    source: "{{ ansible_eth1.ipv4.address }}/{{ kafka_port }}"
+    zone: public
+    immediate: yes
+    permanent: yes
+    state: enabled
+
 - name: Install java OpenJDK 8
   become: true
   yum:

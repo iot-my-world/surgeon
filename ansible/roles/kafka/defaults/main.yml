@@ -1,5 +1,6 @@
 ---
 # defaults file for kafka
+kafka_port: 9092
 ansible_user: override_me
 zookeeperClientPort: 2181
 zookeeperHostAddress: localhost

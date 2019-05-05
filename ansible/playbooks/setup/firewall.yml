@@ -1,0 +1,29 @@
+---
+- hosts: brain, nerve, messaging, db
+  tasks:
+    - name: Install Firewall
+      become: true
+      yum:
+        name:
+          - firewalld
+        state: present
+
+    - name: Start and Enable Firewall
+      become: true
+      service: name=firewalld state=started enabled=yes
+
+    - name: Allow ssh through Firewall in public zone
+      become: true
+      firewalld:
+        zone: public
+        service: ssh
+        immediate: yes
+        permanent: yes
+        state: enabled
+
+    - name: Move eth1 to internal zone
+      firewalld:
+        zone: trusted
+        interface: eth1
+        permanent: yes
+        state: enabled
