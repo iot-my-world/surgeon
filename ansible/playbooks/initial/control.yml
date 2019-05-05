@@ -1,6 +1,8 @@
 ---
+# ansible-playbook playbooks/initial/control.yml --ask-become-pass
 - hosts: control
   vars:
     ansible_ssh_user: bernardbussy
+    known_hosts_path: /Users/bernardbussy/.ssh/known_hosts
   roles:
     - setKnownHosts
