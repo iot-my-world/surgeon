@@ -1,6 +1,0 @@
----
-- hosts: brain
-  gather_facts: false
-  roles:
-    - caddy
-    - brain

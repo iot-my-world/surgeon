@@ -1,5 +1,7 @@
 ---
-- hosts: brain, nerve
+- hosts: brain
   gather_facts: false
   roles:
     - gitlabCIUser
+    - brain
+    - caddy
