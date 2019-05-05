@@ -1,2 +1,23 @@
 ---
 # tasks file for brain
+- name: create brain user group
+  become: true
+  group:
+    name: brain
+    state: present
+
+- name: create brain user
+  become: true
+  user:
+    name: brain
+    groups: brain
+
+- name: configure brain service daemon
+  become: true
+  template:
+    src: brain.service.j2
+    dest: /etc/systemd/system/brain.service
+    owner: root
+    group: brain
+  # notify: reload brain daemon
+  # notify: restart brain and reload daemon

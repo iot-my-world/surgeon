@@ -1,2 +1,13 @@
 ---
 # handlers file for brain
+- name: reload brain daemon
+  become: true
+  systemd:
+    name: brain
+    state: reloaded
+
+- name: restart brain and reload daemon
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: brain
