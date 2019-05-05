@@ -77,7 +77,11 @@
   notify: restart zookeeper
 
 - name: start and enable zookeeper
-  service: name=zookeeper state=started enabled=yes
+  become: true
+  systemd:
+    name: zookeeper
+    state: started
+    enabled: yes
 
 - name: configure kafka
   become: true
@@ -89,4 +93,8 @@
   notify: restart kafka
 
 - name: start and enable kafka
-  service: name=kafka state=started enabled=yes
+  become: true
+  systemd:
+    name: kafka
+    state: started
+    enabled: yes
