@@ -6,6 +6,10 @@ cut -d: -f1 /etc/group | sort
 # firewall
 sudo firewall-cmd --list-all-zones
 
+- name: Display all variables/facts known for a host
+  debug:
+    var: mongo_user
+
 - name: Print some debug information
   vars:
     msg: |

@@ -1,56 +1,52 @@
 ---
-# tasks file for mongo
-# - name: add mongo db repo
-#   become: true
-#   yum_repository:
-#     name: mongodb-org-4.0
-#     # name: becomes 'repo id' in repolist
-#     description: MongoDB Repository
-#     # description: becomes 'repo name' in repolist
-#     # file: defaults to name.repo
-#     baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64
-#     gpgcheck: yes
-#     gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
-#     # enabled: default is yes
-#     mode: 0644
-#     state: present
+tasks file for mongo
+- name: add mongo db repo
+  become: true
+  yum_repository:
+    name: mongodb-org-4.0
+    # name: becomes 'repo id' in repolist
+    description: MongoDB Repository
+    # description: becomes 'repo name' in repolist
+    # file: defaults to name.repo
+    baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64
+    gpgcheck: yes
+    gpgkey: https://www.mongodb.org/static/pgp/server-4.0.asc
+    # enabled: default is yes
+    mode: 0644
+    state: present
 
-# - name: install required python-pip to get tools
-#   become: true
-#   yum:
-#     name: python-pip
-#     state: present
-#     update_cache: yes
+- name: install required python-pip to get tools
+  become: true
+  yum:
+    name: python-pip
+    state: present
+    update_cache: yes
 
-# - name: install required python packages
-#   become: true
-#   pip:
-#     name: pymongo
+- name: install required python packages
+  become: true
+  pip:
+    name: pymongo
 
-# - name: install mongo
-#   become: true
-#   yum:
-#     name: mongodb-org
-#     state: present
-#     update_cache: yes
+- name: install mongo
+  become: true
+  yum:
+    name: mongodb-org
+    state: present
+    update_cache: yes
 
-# - name: configure mongo
-#   become: true
-#   template:
-#     src: mongod.conf.j2
-#     dest: /etc/mongod.conf
-#     owner: root
-#     group: root
-#     mode: 0644
-#   notify: restart mongodb
+- name: configure mongo
+  become: true
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart mongodb
 
-# - name: ensure mongo started and enabled
-#   become: true
-#   service: name=mongod state=started enabled=yes
-
-- name: Display all variables/facts known for a host
-  debug:
-    var: mongo_user
+- name: ensure mongo started and enabled
+  become: true
+  service: name=mongod state=started enabled=yes
 
 - name: set up users on mongo db
   become: true
