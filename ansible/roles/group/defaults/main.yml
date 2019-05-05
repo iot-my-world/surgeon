@@ -1,24 +1,13 @@
 ---
 # defaults file for group
-systemUsers: []
-additionalSystemUsers: []
-# system users should take the following structure
+users: []
+# users should take (at least) the following structure
 # - name: brain
 # - name: nerve
 # ...
 
-humanUsers: []
-additionalHumanUsers: []
-# human users should take the following structure
-# - name: bernard
-#   publicKey: ssh-rsa AAA...
-# - name: paul
-#   publicKey: ssh-rsa BBB...
-# ...
-
-groupsToRemove: []
-additionalGroupsToRemove: []
-# groupsToRemove should take the following structure
+groups_to_remove: []
+# groups_to_remove should take the following structure
 # - name: bob
 # - name: sam
 # ...

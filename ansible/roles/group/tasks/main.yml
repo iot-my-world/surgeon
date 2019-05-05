@@ -1,15 +1,12 @@
 ---
 # tasks file for group
-- name: Create groups
+- name: Create groups for users
   become: true
   group:
     name: "{{ item['name'] }}"
     state: present
   with_items:
-    - "{{ systemUsers }}"
-    - "{{ additionalSystemUsers }}"
-    - "{{ humanUsers }}"
-    - "{{ additionalHumanUsers }}"
+    - "{{ users }}"
 
 - name: Remove additional groups
   become: true
@@ -17,5 +14,4 @@
     name: "{{ item['name'] }}"
     state: absent
   with_items:
-    - "{{ groupsToRemove }}"
-    - "{{ additionalGroupsToRemove }}"
+    - "{{ groups_to_remove }}"

@@ -1,5 +1,5 @@
 ---
-- hosts: brain, nerve, kafka
+- hosts: brain, nerve, messaging, db
   gather_facts: false
   roles:
     - group
