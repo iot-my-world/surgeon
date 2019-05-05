@@ -19,5 +19,5 @@
     dest: /etc/systemd/system/brain.service
     owner: root
     group: brain
-  # notify: reload brain daemon
+  notify: reload brain daemon
   # notify: restart brain and reload daemon
