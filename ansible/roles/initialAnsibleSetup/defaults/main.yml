@@ -1,2 +1,3 @@
 ---
 # defaults file for initialAnsibleSetup
+ansible_user: ansible
