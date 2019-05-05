@@ -10,29 +10,22 @@
     # user will be removed from any other groups
     shell: /bin/zsh
   with_items:
-    - "{{ systemUsers }}"
-    - "{{ additionalSystemUsers }}"
-    - "{{ humanUsers }}"
-    - "{{ additionalHumanUsers }}"
+    - "{{ users }}"
 
-- name: Set human users authorized keys
+- name: Set users authorized keys
   become: true
   authorized_key:
     user: "{{ item['name'] }}"
     key: "{{ item['publicKey'] }}"
     state: present
   with_items:
-    - "{{ humanUsers }}"
-    - "{{ additionalHumanUsers }}"
+    - "{{ users }}"
 
 - name: Clone oh-my-zsh repo for users
   become: true
   git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest="/home/{{ item['name'] }}/.oh-my-zsh"
   with_items:
-    - "{{ systemUsers }}"
-    - "{{ additionalSystemUsers }}"
-    - "{{ humanUsers }}"
-    - "{{ additionalHumanUsers }}"
+    - "{{ users }}"
 
 - name: configure oh-my-zsh for users
   become: true
@@ -42,7 +35,4 @@
     owner: "{{ item['name'] }}"
     group: "{{ item['name'] }}"
   with_items:
-    - "{{ systemUsers }}"
-    - "{{ additionalSystemUsers }}"
-    - "{{ humanUsers }}"
-    - "{{ additionalHumanUsers }}"
+    - "{{ users }}"

@@ -1,17 +1,7 @@
 ---
 # defaults file for user
-systemUsers: []
-additionalSystemUsers: []
-# system users should take the following structure
-# - name: brain
-#   groups: [sudo, brain, ...]
-# - name: nerve
-#   groups: [sudo, nerve, ...]
-# ...
-
-humanUsers: []
-additionalHumanUsers: []
-# human users should take the following structure
+users: []
+# users should take the following structure
 # - name: bernard
 #   groups: [sudo, bernard, ...]
 #   publicKey: ssh-rsa AAA...
