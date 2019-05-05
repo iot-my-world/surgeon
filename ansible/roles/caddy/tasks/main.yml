@@ -34,6 +34,9 @@
   copy:
     src: caddy
     dest: /usr/local/bin/caddy
+    group: caddy
+    owner: root
+    mode: 0550
 
 - name: create directory for CaddyFile
   become: true
@@ -42,15 +45,6 @@
     state: directory
     owner: root
     group: caddy
-
-- name: configure Caddyfile
-  become: true
-  template:
-    src: Caddyfile.j2
-    dest: /etc/caddy/Caddyfile
-    owner: root
-    group: caddy
-  notify: restart caddy
 
 - name: configure caddy service daemon
   become: true
@@ -62,6 +56,15 @@
   notify: reload caddy service daemon
 
 - meta: flush_handlers
+
+- name: configure Caddyfile
+  become: true
+  template:
+    src: Caddyfile.j2
+    dest: /etc/caddy/Caddyfile
+    owner: root
+    group: caddy
+  notify: restart caddy
 
 - name: create directory for SSL keys for https
   become: true

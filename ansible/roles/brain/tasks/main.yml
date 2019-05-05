@@ -20,4 +20,6 @@
     owner: root
     group: brain
   notify: reload brain daemon
+
   # notify: restart brain and reload daemon
+- meta: flush_handlers
