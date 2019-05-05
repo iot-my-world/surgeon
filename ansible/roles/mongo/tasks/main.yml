@@ -34,6 +34,16 @@
     state: present
     update_cache: yes
 
+- name: configure mongo
+  become: true
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart mongodb
+
 - name: ensure mongo started and enabled
   become: true
   service: name=mongod state=started enabled=yes

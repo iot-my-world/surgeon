@@ -26,8 +26,8 @@ processManagement:
 
 # network interfaces
 net:
-  port: 27017
-  bindIp: 127.0.0.1  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
+  port: {{ mongo_port }}
+  bindIp: {{ ansible_eth1.ipv4.address }}  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
 
 
 #security:

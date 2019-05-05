@@ -1,2 +1,3 @@
 ---
 # defaults file for mongo
+mongo_port: 27017
