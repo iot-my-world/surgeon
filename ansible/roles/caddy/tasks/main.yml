@@ -59,7 +59,9 @@
     dest: /etc/systemd/system/caddy.service
     owner: root
     group: caddy
-  notify: reload and restart caddy
+  notify: reload caddy service daemon
+
+- meta: flush_handlers
 
 - name: create directory for SSL keys for https
   become: true
