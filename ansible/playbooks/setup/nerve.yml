@@ -1,0 +1,6 @@
+---
+- hosts: nerve
+  gather_facts: false
+  roles:
+    - gitlabCIUser
+    - nerve
