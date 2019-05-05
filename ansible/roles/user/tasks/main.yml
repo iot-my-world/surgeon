@@ -1,5 +1,12 @@
 ---
 # tasks file for user
+- name: Add Yum Packages required for user setup
+  become: true
+  yum:
+    name: [git, zsh]
+    state: present
+    update_cache: yes
+
 - name: Create users
   become: true
   user:

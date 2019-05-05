@@ -1,8 +1,10 @@
 ---
 - hosts: brain, nerve, messaging, db
-  gather_facts: true
   roles:
     - installEpelRepo
+
+- hosts: brain, nerve, messaging, db
+  gather_facts: false
   tasks:
     - name: Add Yum Packages
       become: true
