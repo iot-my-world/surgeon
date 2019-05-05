@@ -1,6 +1,7 @@
 ---
 # tasks file for mongo
 - name: add mongo db repo
+  become: true
   yum_repository:
     name: mongodb-org-4.0
     # name: becomes 'repo id' in repolist
