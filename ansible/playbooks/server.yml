@@ -7,7 +7,7 @@
     - name: Add EPEL Repo
       yum_repository:
         name: epel-release-latest-7
-        description: MongoDB Repository
+        description: epel Repository
         # file: defaults to name.repo
         baseurl: https://dl.fedoraproject.org/pub/epel/7Server/aarch64/
         gpgcheck: yes

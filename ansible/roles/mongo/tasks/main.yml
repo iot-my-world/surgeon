@@ -15,6 +15,18 @@
     mode: 0644
     state: present
 
+- name: install required python-pip to get tools
+  become: true
+  yum:
+    name: python-pip
+    state: present
+    update_cache: yes
+
+- name: install required python packages
+  become: true
+  pip:
+    name: pymongo
+
 - name: install mongo
   become: true
   yum:
