@@ -48,14 +48,14 @@
   become: true
   service: name=mongod state=started enabled=yes
 
-- name: set up brain user on mongo db
+- name: set up users on mongo db
   become: true
   mongodb_user:
     database: admin
-    name: brain
-    password: "{{ brainMongoUserPassword }}"
+    name: "{{ item['name'] }}"
+    password: "{{ item['password'] }}"
     update_password: always
-    roles:
-      - "userAdminAnyDatabase"
-      - "readWriteAnyDatabase"
+    roles: "{{ item['roles'] }}"
     state: present
+  with_items:
+    - mongo_users

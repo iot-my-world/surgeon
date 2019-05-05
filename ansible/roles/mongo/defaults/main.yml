@@ -1,3 +1,9 @@
 ---
 # defaults file for mongo
 mongo_port: 27017
+mongo_users: []
+# mongo users should take the form
+# - name: brain
+#   password: 'asdf'
+#   roles: ["userAdminAnyDatabase", "readWriteAnyDatabase"]
+# ...

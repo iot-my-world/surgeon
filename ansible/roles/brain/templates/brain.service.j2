@@ -3,7 +3,7 @@ Description=Brain
 After=network.target
 [Service]
 ExecStart=/home/brain/brain -mongoUser=brain \
-                              -mongoPassword=theInsideOfTheBrainContainsNeurons \
+                              -mongoPassword={{ brain_mongo_user.password }} \
                               -mailRedirectBaseUrl=https://www.spotnav.co.za \
                               -rootPasswordFileLocation=rootPassword \
                               -pathToEmailTemplateFolder=resources/email/template \
