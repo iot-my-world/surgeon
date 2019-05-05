@@ -1,4 +1,10 @@
 ---
+- hosts: control
+  vars:
+    ansible_ssh_user: bernardbussy
+  roles:
+    - setKnownHosts
+
 - hosts: brain, nerve, kafka, mongo
   vars:
     ansible_ssh_user: root

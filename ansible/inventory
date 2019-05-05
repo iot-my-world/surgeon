@@ -1,11 +1,14 @@
+[control]
+control ansible_connection=local
+
 [brain]
-brain.spotnav.net
+brain01.spotnav.net
 
 [nerve]
-nerve.spotnav.net
+nerve01.spotnav.net
 
-[kafka]
-kafka.spotnav.net
+[messaging]
+messaging01.spotnav.net
 
-[mongo]
-mongo.spotnav.net
+[db]
+db01.spotnav.net
