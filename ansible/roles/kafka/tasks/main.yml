@@ -20,7 +20,7 @@
 
 - name: Create kafka download directory
   file:
-    path: "/home/{{ ansible_user }}}/downloads"
+    path: "/home/{{ ansible_user }}/downloads"
     state: directory
 
 - name: Create kafka program directory
@@ -39,7 +39,7 @@
 - name: Extract kafka
   become: true
   unarchive:
-    src: "/home/{{ ansible_user }}}/downloads/kafka.tgz"
+    src: "/home/{{ ansible_user }}/downloads/kafka.tgz"
     dest: /home/kafka/kafka
     remote_src: yes
     extra_opts:
