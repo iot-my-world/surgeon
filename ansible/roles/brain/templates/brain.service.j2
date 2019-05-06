@@ -8,10 +8,10 @@ ExecStart=/home/brain/brain -mongoUser=brain \
                               -rootPasswordFileLocation=rootPassword \
                               -pathToEmailTemplateFolder=resources/email/template \
                               -mongoNodes="{% for host in groups['db'] -%}
-                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:27017{{ "," if not loop.last }}
+                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:27017{% if not loop.last %},{% endif %}
                                            {%- endfor %}" \
                               -kafkaBrokers="{% for host in groups['messaging'] -%}
-                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:27017{{ "," if not loop.last }}
+                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:27017{% if not loop.last %},{% endif %}
                                            {%- endfor %}" \
 WorkingDirectory=/home/brain
 Restart=always
