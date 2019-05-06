@@ -13,7 +13,7 @@ ExecStart=/home/brain/brain -mongoUser={{ mongo_user.name }} \
                               -kafkaBrokers={% for host in groups['messaging'] -%}
                                             {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:{{ kafka_port }}{% if not loop.last %},{% endif %}
                                            {%- endfor %} \
-                              -keysFilePath=resources/keys \                                           
+                              -keysFilePath=resources/keys                                           
 WorkingDirectory=/home/brain
 Restart=always
 User=brain
