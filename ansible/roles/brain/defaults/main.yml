@@ -2,3 +2,6 @@
 # defaults file for brain
 mongo_port: 27017
 kafka_port: 9092
+mongo_user:
+  - name: ""
+  - password: ""
