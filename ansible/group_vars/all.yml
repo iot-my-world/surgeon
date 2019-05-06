@@ -35,8 +35,8 @@ brain_api2_server_port: 9011
 kafka_port: 9092
 
 # mongo vars
-# mongo_authorization: enabled
-mongo_authorization: disabled
+mongo_authorization: enabled
+# mongo_authorization: disabled
 mongo_port: 27017
 mongo_user:
   name: brain
