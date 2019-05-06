@@ -7,8 +7,12 @@ ExecStart=/home/brain/brain -mongoUser=brain \
                               -mailRedirectBaseUrl=https://www.spotnav.co.za \
                               -rootPasswordFileLocation=rootPassword \
                               -pathToEmailTemplateFolder=resources/email/template \
-                              -mongoNodes="165.22.246.12:27017" \
-                              -kafkaBrokers="165.22.241.175:9092"
+                              -mongoNodes="{% for host in groups['db'] -%}
+                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:27017{{ "," if not loop.last }}
+                                           {%- endfor %}" \
+                              -kafkaBrokers="{% for host in groups['messaging'] -%}
+                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:27017{{ "," if not loop.last }}
+                                           {%- endfor %}" \
 WorkingDirectory=/home/brain
 Restart=always
 User=brain
