@@ -27,6 +27,15 @@
   pip:
     name: pymongo
 
+- name: Set firewall rules for mongo
+  become: true
+  firewalld:
+    port: "{{ mongo_port }}/tcp"
+    state: enabled
+    zone: internal
+    immediate: yes
+    permanent: yes
+
 - name: install mongo
   become: true
   yum:
