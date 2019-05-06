@@ -28,16 +28,23 @@
     dest: /etc/systemd/system/brain.service
     owner: root
     group: brain
-  notify: reload brain daemon
-  # notify: restart brain and reload daemon
+  notify: restart brain and reload daemon
 - meta: flush_handlers
 
-- name: create resouces directory
+- name: create email resources directory
   file:
     path: /home/brain/resources/email/template
     state: directory
     group: brain
     owner: brain
+
+- name: create keys resouces directory
+  file:
+    path: /home/brain/resources/keys
+    state: directory
+    group: brain
+    owner: brain
+    mode: 0660
 
 - name: extract email templates
   unarchive:
