@@ -1,5 +1,6 @@
 ---
 # tasks file for mongo
+# ssh -i ~/.ssh/bernard -N -L localhost:27019:10.130.109.75:27017 bernard@db01.spotnav.net
 - name: add mongo db repo
   become: true
   yum_repository:
@@ -58,6 +59,7 @@
   service: name=mongod state=started enabled=yes
 
 - name: set up users on mongo db
+  when: false
   become: true
   mongodb_user:
     database: admin
