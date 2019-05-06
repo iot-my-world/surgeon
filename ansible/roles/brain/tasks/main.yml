@@ -22,19 +22,19 @@
     name: brain
     groups: brain
 
-- name: configure brain service daemon
-  template:
-    src: brain.service.j2
-    dest: /etc/systemd/system/brain.service
-    owner: root
-    group: brain
-  notify: restart brain and reload daemon
-- meta: flush_handlers
-
 - name: create email resources directory
   file:
     path: /home/brain/resources/email/template
     state: directory
+    group: brain
+    owner: brain
+
+- name: extract email templates into resources
+  unarchive:
+    src: emailTemplates.tar
+    dest: /home/brain/resources/email/template
+    extra_opts:
+      - --strip=1
     group: brain
     owner: brain
 
@@ -44,13 +44,29 @@
     state: directory
     group: brain
     owner: brain
-    mode: 0660
+    mode: 0440
 
-- name: extract email templates
-  unarchive:
-    src: emailTemplates.tar
-    dest: /home/brain/resources/email/template
-    extra_opts:
-      - --strip=1
+- name: copy pub key to server
+  copy:
+    src: publicKey.pem
+    dest: /home/brain/resources/keys/publicKey.pem
+    group: caddy
+    owner: root
+    mode: 0440
+
+- name: copy pvt key to server
+  copy:
+    src: privateKey.pem
+    dest: /home/brain/resources/keys/privateKey.pem
+    group: caddy
+    owner: root
+    mode: 0440
+
+- name: configure brain service daemon
+  template:
+    src: brain.service.j2
+    dest: /etc/systemd/system/brain.service
+    owner: root
     group: brain
-    owner: brain
+  notify: restart brain and reload daemon
+- meta: flush_handlers
