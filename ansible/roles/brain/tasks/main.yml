@@ -69,4 +69,5 @@
     owner: root
     group: brain
   notify: restart brain and reload daemon
+
 - meta: flush_handlers

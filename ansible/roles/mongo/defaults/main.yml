@@ -1,7 +1,11 @@
 ---
 # defaults file for mongo
+mongo_authorization: disabled
 mongo_port: 27017
 mongo_user:
   - name: ""
     password: ""
     roles: []
+mongo_root_user:
+  name: ""
+  password: ""

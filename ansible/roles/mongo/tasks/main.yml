@@ -2,7 +2,6 @@
 # tasks file for mongo
 # ssh -i ~/.ssh/bernard -N -L localhost:27019:10.130.109.75:27017 bernard@db01.spotnav.net
 - name: add mongo db repo
-  become: true
   yum_repository:
     name: mongodb-org-4.0
     # name: becomes 'repo id' in repolist
@@ -17,19 +16,16 @@
     state: present
 
 - name: install required python-pip to get tools
-  become: true
   yum:
     name: python-pip
     state: present
     update_cache: yes
 
 - name: install required python packages
-  become: true
   pip:
     name: pymongo
 
 - name: Set firewall rules for mongo
-  become: true
   firewalld:
     port: "{{ mongo_port }}/tcp"
     state: enabled
@@ -38,14 +34,12 @@
     permanent: yes
 
 - name: install mongo
-  become: true
   yum:
     name: mongodb-org
     state: present
     update_cache: yes
 
 - name: configure mongo
-  become: true
   template:
     src: mongod.conf.j2
     dest: /etc/mongod.conf
@@ -54,14 +48,28 @@
     mode: 0644
   notify: restart mongodb
 
+- meta: flush_handlers
+
 - name: ensure mongo started and enabled
-  become: true
   service: name=mongod state=started enabled=yes
 
-- name: set up users on mongo db
-  when: false
-  become: true
+- name: set up root user on mongo db
+  when: mongo_authorization == "disabled"
   mongodb_user:
+    login_host: ansible_eth1.ipv4.address
+    login_port: mongo_port
+    database: admin
+    name: "{{ mongo_root_user.name }}"
+    password: "{{ mongo_root_user.password }}"
+    update_password: always
+    roles: ["root", "clusterAdmin"]
+    state: present
+
+- name: set up other user on mongo db
+  when: mongo_authorization == "disabled"
+  mongodb_user:
+    login_host: ansible_eth1.ipv4.address
+    login_port: mongo_port
     database: admin
     name: "{{ mongo_user.name }}"
     password: "{{ mongo_user.password }}"
