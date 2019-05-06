@@ -56,8 +56,8 @@
 - name: set up root user on mongo db
   when: mongo_authorization == "disabled"
   mongodb_user:
-    login_host: ansible_eth1.ipv4.address
-    login_port: mongo_port
+    login_host: "{{ ansible_eth1.ipv4.address }}"
+    login_port: "{{ mongo_port }}"
     database: admin
     name: "{{ mongo_root_user.name }}"
     password: "{{ mongo_root_user.password }}"
@@ -68,8 +68,8 @@
 - name: set up other user on mongo db
   when: mongo_authorization == "disabled"
   mongodb_user:
-    login_host: ansible_eth1.ipv4.address
-    login_port: mongo_port
+    login_host: "{{ ansible_eth1.ipv4.address }}"
+    login_port: "{{ mongo_port }}"
     database: admin
     name: "{{ mongo_user.name }}"
     password: "{{ mongo_user.password }}"
