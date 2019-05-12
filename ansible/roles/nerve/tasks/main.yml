@@ -1,5 +1,11 @@
 ---
 # tasks file for nerve
+- name: gather facts from messaging servers
+  setup:
+  delegate_to: "{{item}}"
+  delegate_facts: True
+  loop: "{{groups['messaging']}}"
+
 - name: create nerve user group
   become: true
   group:
