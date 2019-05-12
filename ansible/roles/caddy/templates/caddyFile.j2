@@ -2,9 +2,11 @@ www.spotnav.net {
         root /var/www
         gzip
         tls brbitzbussy@gmail.com
-        proxy /api localhost:9010
+        proxy /api/portal localhost:9010
+        proxy /api/nerve localhost:9011
         rewrite / {
-                if {path} not_match ^/api
+                if {path} not_match ^/api/portal
+                if {path} not_match ^/api/nerve
                 to {path} /
         }
 } 
@@ -12,9 +14,11 @@ www.spotnav.co.za {
         root /var/www
         gzip
         tls calvinvw@hotmail.com
-        proxy /api localhost:9010
+        proxy /api/portal localhost:9010
+        proxy /api/nerve localhost:9011
         rewrite / {
-                if {path} not_match ^/api
+                if {path} not_match ^/api/portal
+                if {path} not_match ^/api/nerve
                 to {path} /
         }
 }
