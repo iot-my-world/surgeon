@@ -3,10 +3,12 @@ Description=Nerve
 After=network.target
 [Service]
 WorkingDirectory=/home/nerve
-ExecStart=/home/nerve/nerve -brainUrl=https://www.spotnav.net/api
+ExecStart=/home/nerve/nerve -brainUrl=https://www.spotnav.net/api-2 \
+                                -brainAPIUserUsername=c877d101-79c1-4226-a309-14823c692d3d \
+                                -brainAPIUserPassword=Hiwxv1Y4QvenFFgEOxlqncA/qAoK9uYPoftP7E/4wlI= \
                                 -kafkaBrokers={% for host in groups['messaging'] -%}
                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:{{ kafka_port }}{% if not loop.last %},{% endif %}
-                                          {%- endfor %} \
+                                          {%- endfor %}
 Restart=always
 User=nerve
 Group=nerve

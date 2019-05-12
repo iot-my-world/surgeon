@@ -6,6 +6,15 @@
   delegate_facts: True
   loop: "{{groups['messaging']}}"
 
+- name: Set firewall rules for nerve
+  become: true
+  firewalld:
+    port: "{{ nerve_port }}/tcp"
+    state: enabled
+    zone: public
+    immediate: yes
+    permanent: yes
+
 - name: create nerve user group
   become: true
   group:
