@@ -1,2 +1,3 @@
 ---
-# db hosts group vars
+# db hosts group varsn
+# mongodump --host localhost:27017 --db brain --out=./ -u=amygdala -p=controllerOfAllMemories --authenticationDatabase=admin

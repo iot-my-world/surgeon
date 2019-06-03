@@ -1,6 +1,7 @@
 ---
 # tasks file for mongo
 # ssh -i ~/.ssh/bernard -N -L localhost:27019:10.130.109.75:27017 bernard@db01.spotnav.net
+# mongodump --host 10.130.109.75:27017 --db brain --out=./ -u=amygdala -p=controllerOfAllMemories --authenticationDatabase=admin
 - name: add mongo db repo
   yum_repository:
     name: mongodb-org-4.0
