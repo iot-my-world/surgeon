@@ -1,0 +1,27 @@
+---
+# tasks file for ciManUser
+- name: Create ciMan User
+  become: true
+  user:
+    name: ciMan
+
+- name: Set ciMan Users authorized key
+  become: true
+  authorized_key:
+    user: ciMan
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdPcSxvXYhVrt+IGU7zVWiR2H75CuKnGD8/W5B+fb2Th4uYuNKfWlZEj9naRK1jw0W7SYYk4DS7rzDGnuQzLqmwrOqnq/c32Azbg3YdikLckKFJsOBvbbklPJnTU+qW6CNEG1nyZjoMkrGqSXJeomcK6lynCHAMwpWCWKJL7eJkvydRtKhlX0pGtxcAlkZlsOWf09nrGZeRVcoYETyuouOqeillhDHEPTb9NqZPbT/b8XDLK+Fy0CmzuIP8hrdkgoBBBRqv2EZFkP80mHMidnru/22WDU0jZSRNeSe7ZX6mUB1Xnn5VVkdiFMqKXUl1rkDOyKxw7MuHxx0+TRmkkwp bernardbussy@FVFVXUF5J1WK-MacAir.local
+    state: present
+
+- name: set allowed commands for ciMan user
+  become: true
+  blockinfile:
+    path: /etc/sudoers
+    block: |
+      ciMan  ALL=(brain)  NOPASSWD: ALL
+      ciMan  ALL = NOPASSWD: /bin/mv /home/ciMan/brain /home/brain
+      ciMan  ALL = NOPASSWD: /bin/systemctl stop brain.service
+      ciMan  ALL = NOPASSWD: /bin/systemctl start brain.service
+      ciMan  ALL = NOPASSWD: /bin/tar -xvf  portal.tar
+      ciMan  ALL = NOPASSWD: /bin/rm -rf /var/www/*
+      ciMan  ALL = NOPASSWD: /bin/cp -r build/* /var/www/
+      ciMan  ALL = NOPASSWD: /bin/rm -rf /home/ciMan/*
