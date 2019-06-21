@@ -3,5 +3,5 @@
   gather_facts: false
   become: true
   roles:
-    - gitlabCIUser
+    - ciManUser
     - brain
