@@ -2,13 +2,7 @@
 ctrl ansible_connection=local
 
 [brain]
-brain01.spotnav.net
-
-[nerve]
-nerve01.spotnav.net
-
-[messaging]
-messaging01.spotnav.net
+brain01.iotmyworld.com
 
 [db]
-db01.spotnav.net
+db01.iotmyworld.com
