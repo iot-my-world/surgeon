@@ -63,6 +63,6 @@
     dest: /etc/systemd/system/brain.service
     owner: root
     group: brain
-  notify: restart brain and reload daemon
+  notify: "restart brain and reload daemon"
 
 - meta: flush_handlers
