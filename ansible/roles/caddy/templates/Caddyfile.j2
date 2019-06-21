@@ -1,0 +1,12 @@
+www.iotmyworld.com {
+        root /var/www
+        gzip
+        tls brbitzbussy@gmail.com
+        proxy /api-1 localhost:9010
+        proxy /api-2 localhost:9011
+        rewrite / {
+                if {path} not_match ^/api-1
+                if {path} not_match ^/api-2
+                to {path} /
+        }
+}
