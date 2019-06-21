@@ -4,7 +4,7 @@ After=network.target
 [Service]
 ExecStart=/home/brain/brain -mongoUser={{ mongo_user.name }} \
                               -mongoPassword={{ mongo_user.password }} \
-                              -mailRedirectBaseUrl=https://www.spotnav.co.za \
+                              -mailRedirectBaseUrl=https://www.iotmyworld.com \
                               -rootPasswordFileLocation=rootPassword \
                               -pathToEmailTemplateFolder=resources/email/template \
                               -mongoNodes={% for host in groups['db'] -%}

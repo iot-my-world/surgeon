@@ -45,7 +45,7 @@
   copy:
     src: publicKey.pem
     dest: /home/brain/resources/keys/publicKey.pem
-    group: caddy
+    group: brain
     owner: root
     mode: 0440
 
@@ -53,7 +53,7 @@
   copy:
     src: privateKey.pem
     dest: /home/brain/resources/keys/privateKey.pem
-    group: caddy
+    group: brain
     owner: root
     mode: 0440
 

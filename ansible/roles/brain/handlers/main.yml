@@ -6,8 +6,16 @@
     name: brain
     state: reloaded
 
-- name: restart brain and reload daemon
+- name: reload brain daemon
+  listen: restart brain and reload daemon
+  become: true
+  systemd:
+    name: brain
+    state: reloaded
+
+- name: restart brain
+  listen: restart brain and reload daemon
+  when: binaryAvailable
   systemd:
     state: restarted
-    daemon_reload: yes
     name: brain
