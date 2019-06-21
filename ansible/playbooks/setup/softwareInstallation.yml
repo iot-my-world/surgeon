@@ -1,9 +1,9 @@
 ---
-- hosts: brain, nerve, messaging, db
+- hosts: brain, db
   roles:
     - installEpelRepo
 
-- hosts: brain, nerve, messaging, db
+- hosts: brain, db
   gather_facts: false
   tasks:
     - name: Add Yum Packages
