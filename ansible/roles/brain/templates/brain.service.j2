@@ -2,15 +2,7 @@
 Description=Brain
 After=network.target
 [Service]
-ExecStart=/home/brain/brain -mongoUser={{ mongo_user.name }} \
-                              -mongoPassword={{ mongo_user.password }} \
-                              -mailRedirectBaseUrl=https://www.iotmyworld.com \
-                              -rootPasswordFileLocation=rootPassword \
-                              -pathToEmailTemplateFolder=resources/email/template \
-                              -mongoNodes={% for host in groups['db'] -%}
-                                            {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:{{ mongo_port }}{% if not loop.last %},{% endif %}
-                                           {%- endfor %} \
-                              -keysFilePath=resources/keys                                           
+ExecStart=/home/brain/brain
 WorkingDirectory=/home/brain
 Restart=always
 User=brain

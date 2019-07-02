@@ -58,6 +58,14 @@
     owner: root
     mode: 0440
 
+- name: configure brain
+  template:
+    src: config.toml.j2
+    dest: /home/brain/config.toml
+    owner: root
+    group: brain
+  notify: restart brain
+
 - name: configure brain service daemon
   template:
     src: brain.service.j2

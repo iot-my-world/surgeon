@@ -1,0 +1,14 @@
+# brain config file
+
+emailaddress = "spotnavza@gmail.com"
+emailhost = "smtp.gmail.com"
+emailpassword = "spotNav123"
+keyfilepath = "resources/keys"
+mailredirectbaseurl = "https://www.iotmyworld.com"
+mongonodes = [{% for host in groups['db'] -%}
+                "{{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:{{ mongo_port }}"{% if not loop.last %},{% endif %}
+              {%- endfor %}]
+mongopassword = "{{ mongo_user.password }}"
+mongouser = "{{ mongo_user.name }}"
+pathtoemailtemplatefolder = "resources/email/template"
+rootpasswordfilelocation = "rootPassword"

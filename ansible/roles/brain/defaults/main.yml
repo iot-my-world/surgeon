@@ -5,4 +5,4 @@ kafka_port: 9092
 mongo_user:
   - name: ""
   - password: ""
-binaryAvailable: false
+binaryAvailable: true
