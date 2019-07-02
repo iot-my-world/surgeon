@@ -32,6 +32,7 @@
       - --strip=1
     group: brain
     owner: brain
+  notify: restart brain
 
 - name: create keys resouces directory
   file:
