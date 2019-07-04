@@ -2,7 +2,7 @@
 Description=Brain
 After=network.target
 [Service]
-ExecStart=/home/brain/brain
+ExecStart=/home/brain/brain  -pathToConfigFile=config.toml
 WorkingDirectory=/home/brain
 Restart=always
 User=brain
